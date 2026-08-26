@@ -290,6 +290,1930 @@ table.res td.null{color:var(--dim);font-style:italic}
 @media(hover:none){.btn{padding:10px 15px}.nv{padding:11px 10px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
+/* ---------- export / night-before sheet ---------- */
+.ex-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.ex-tab{background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:7px;padding:7px 12px;
+  cursor:pointer;font:500 11.5px/1 'IBM Plex Mono',monospace;letter-spacing:.05em;min-height:34px}
+.ex-tab:hover{border-color:var(--signal);color:var(--text)}
+.ex-tab.on{border-color:var(--signal);color:var(--signal);background:var(--signal-soft)}
+.ex-opts{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:9px 0 11px;border-bottom:1px solid var(--line-soft);margin-bottom:12px}
+.ex-opts select{background:#080D18;border:1px solid var(--line);color:var(--text);border-radius:7px;padding:7px 9px;
+  font:400 12px/1 'IBM Plex Mono',monospace;outline:none;max-width:100%}
+.ex-opts select:focus{border-color:var(--signal)}
+.ex-count{font:400 10.5px/1.4 'IBM Plex Mono',monospace;color:var(--dim);letter-spacing:.08em;margin-left:auto}
+.sheet{background:#0A101C;border:1px solid var(--line-soft);border-radius:9px;padding:16px 18px;max-height:52vh;overflow-y:auto}
+.sheet h3{font-family:'IBM Plex Mono';font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--signal);
+  margin:18px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.sheet h3:first-child{margin-top:0}
+.sheet h4{font-family:'Space Grotesk';font-size:13.5px;color:var(--flag);margin:14px 0 6px;font-weight:600}
+.sheet .sq{color:#fff;font-weight:500;font-size:13.5px;margin-top:9px}
+.sheet .sq::before{content:'Q. ';color:var(--flag);font-family:'IBM Plex Mono';font-size:10.5px}
+.sheet .sa{color:var(--muted);font-size:13px;margin:3px 0 0 0;line-height:1.6}
+.sheet .sa::before{content:'A. ';color:var(--signal);font-family:'IBM Plex Mono';font-size:10.5px}
+.sheet blockquote{border-left:2px solid var(--flag);background:var(--flag-soft);border-radius:0 7px 7px 0;
+  padding:9px 12px;margin:7px 0;color:#DCE4F0;font-size:13.5px;line-height:1.6}
+.sheet .strap{border-left:2px solid var(--alert);background:rgba(255,122,122,.07);border-radius:0 7px 7px 0;
+  padding:8px 12px;margin:6px 0 0;color:#FFC2C2;font-size:12.6px;line-height:1.55}
+.sheet .strap::before{content:'TRAP · ';font-family:'IBM Plex Mono';font-size:9.5px;letter-spacing:.14em}
+.sheet pre{font-family:'IBM Plex Mono';font-size:11.6px;background:#070C16;border:1px solid var(--line-soft);
+  border-left:2px solid var(--wire);border-radius:6px;padding:9px 11px;white-space:pre-wrap;color:#C8D6EA;
+  line-height:1.6;margin:5px 0;overflow-x:auto}
+.sheet .snote{color:var(--dim);font-size:12.2px;line-height:1.55;margin:4px 0 0}
+.sheet code{font-size:.88em}
+
+/* ---------- print: the sheet only ---------- */
+@media print{
+  @page{margin:14mm}
+  body{background:#fff!important;color:#111!important;font-size:10.5pt;line-height:1.45}
+  body::before{display:none!important}
+  .rail,.top,.scrim,.pager,.kbd,.bench,.ex-tabs,.ex-opts,.ovl-hd,.orow,.drl-bar{display:none!important}
+  .app{display:block!important}
+  .ovl{position:static!important;display:block!important;background:#fff!important;padding:0!important;backdrop-filter:none!important}
+  .ovl:not(.open){display:none!important}
+  .ovl-card{border:0!important;box-shadow:none!important;max-height:none!important;height:auto!important;width:100%!important}
+  .ovl-bd{overflow:visible!important;padding:0!important}
+  #drlOvl{display:none!important}
+  .sheet{max-height:none!important;overflow:visible!important;background:#fff!important;border:0!important;padding:0!important}
+  .sheet h3{color:#000!important;border-bottom:1.5pt solid #000!important;font-size:9.5pt;margin:16pt 0 6pt;
+    break-after:avoid;page-break-after:avoid}
+  .sheet h4{color:#000!important;font-size:11pt;margin:10pt 0 3pt;break-after:avoid;page-break-after:avoid}
+  .sheet .sq{color:#000!important;font-size:10pt;break-inside:avoid;page-break-inside:avoid}
+  .sheet .sa{color:#333!important;font-size:9.5pt}
+  .sheet .sq,.sheet .sa{orphans:3;widows:3}
+  .sheet blockquote{border-left:2pt solid #666!important;background:#f4f4f4!important;color:#000!important;
+    break-inside:avoid;page-break-inside:avoid}
+  .sheet .strap{border-left:2pt solid #999!important;background:#f8f8f8!important;color:#222!important}
+  .sheet pre{background:#f6f6f6!important;color:#111!important;border:1px solid #ccc!important;font-size:8.6pt;
+    break-inside:avoid;page-break-inside:avoid}
+  .sheet .snote{color:#444!important}
+  .sheet code{background:#eee!important;color:#111!important;border:0!important}
+  .mod{display:none!important}
+}
+
+/* ---------- practice mode ---------- */
+.pr-head{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding-bottom:11px;border-bottom:1px solid var(--line-soft);margin-bottom:13px}
+.pr-chip{font:500 9.5px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid var(--line);border-radius:5px;padding:5px 8px;color:var(--muted)}
+.pr-chip.easy{border-color:rgba(86,227,159,.4);color:var(--ok)}
+.pr-chip.medium{border-color:var(--flag-line);color:var(--flag)}
+.pr-chip.hard{border-color:rgba(255,122,122,.4);color:var(--alert)}
+.pr-score{margin-left:auto;font:400 10.5px/1.5 'IBM Plex Mono',monospace;color:var(--dim);letter-spacing:.06em;text-align:right}
+.pr-score b{color:var(--signal);font-weight:500}
+.pr-prompt{font-size:15.5px;line-height:1.62;color:#DCE4F0;margin-bottom:12px}
+.pr-prompt b{color:var(--flag);font-weight:600}
+.pr-verdict{border-radius:8px;padding:11px 13px;margin:11px 0;font-family:'IBM Plex Mono';font-size:12.4px;line-height:1.6;white-space:pre-wrap}
+.pr-verdict.ok{border:1px solid rgba(86,227,159,.4);border-left:3px solid var(--ok);background:rgba(86,227,159,.08);color:#BFF3D9}
+.pr-verdict.no{border:1px solid rgba(255,122,122,.4);border-left:3px solid var(--alert);background:rgba(255,122,122,.07);color:#FFC2C2}
+.pr-verdict.info{border:1px solid var(--flag-line);border-left:3px solid var(--flag);background:var(--flag-soft);color:#F0DEB4}
+.pr-lab{font:500 9.5px/1 'IBM Plex Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin:13px 0 6px}
+.pr-tables{display:grid;gap:12px}
+@media(min-width:900px){.pr-tables.two{grid-template-columns:1fr 1fr}}
+
+</style>
+</head>
+<body>
+<div class="scrim" id="scrim"></div>
+<div class="app">
+
+<aside class="rail" id="rail">
+  <div class="brand">
+    <b>SQL <i>/</i> BENCH</b>
+    <span>Vedant &middot; foundations &rarr; windows &rarr; pipeline SQL</span>
+  </div>
+  <div class="find"><input type="text" id="find" placeholder="filter modules&hellip;" autocomplete="off" spellcheck="false"></div>
+  <nav id="nav"></nav>
+  <div class="rail-f" id="railf">&mdash;</div>
+</aside>
+
+<main class="stage">
+  <header class="top">
+    <button class="burger" id="burger" aria-label="Open module list">&#9776;</button>
+    <span class="top-lab" id="topLab">&mdash;</span>
+    <div class="tape"><i id="tape"></i></div>
+    <span class="top-n" id="topN">&mdash;</span>
+    <div class="top-acts">
+      <button class="tbtn" id="btnSearch" title="Search everything"><span>&#8981;</span><span class="lbl">Search</span><kbd>/</kbd></button>
+      <button class="tbtn" id="btnDrill" title="Quick-fire drill"><span>&#9672;</span><span class="lbl">Drill</span><kbd>d</kbd></button>
+      <button class="tbtn" id="btnPractice" title="Graded practice"><span>&#9654;</span><span class="lbl">Practice</span><kbd>p</kbd></button>
+      <button class="tbtn" id="btnExport" title="Printable sheets"><span>&#8615;</span><span class="lbl">Sheet</span><kbd>e</kbd></button>
+      <button class="tbtn" id="btnDone" title="Mark this module complete"><span>&#10003;</span><span class="lbl">Done</span></button>
+    </div>
+  </header>
+  <div id="mods"></div>
+</main>
+</div>
+
+<div class="ovl" id="srOvl">
+  <div class="ovl-card">
+    <div class="ovl-hd"><span>&#8981;</span><span>Search every module, query and answer</span><button class="x" id="srX">&times;</button></div>
+    <div class="ovl-bd">
+      <input type="text" id="srIn" placeholder="e.g. fan-out, NOT IN, watermark, DENSE_RANK&hellip;" autocomplete="off" spellcheck="false">
+      <div id="srRes"></div>
+    </div>
+  </div>
+</div>
+
+<div class="ovl" id="prOvl">
+  <div class="ovl-card">
+    <div class="ovl-hd"><span>&#9654;</span><span>Practice &mdash; graded against a hidden reference</span><button class="x" id="prX">&times;</button></div>
+    <div class="ovl-bd"><div id="prBody"></div></div>
+  </div>
+</div>
+
+<div class="ovl" id="exOvl">
+  <div class="ovl-card">
+    <div class="ovl-hd"><span>&#8615;</span><span>Printable sheets</span><button class="x" id="exX">&times;</button></div>
+    <div class="ovl-bd">
+      <div class="ex-tabs">
+        <button class="ex-tab on" data-mode="qf">Quick-fire sheet</button>
+        <button class="ex-tab" data-mode="call">Interview points</button>
+        <button class="ex-tab" data-mode="sql">Query cookbook</button>
+      </div>
+      <div class="ex-opts">
+        <select id="exTrack"></select>
+        <button class="btn sm" id="exPrint">Print / PDF</button>
+        <button class="btn sm" id="exCopy">Copy markdown</button>
+        <button class="btn sm" id="exDl">Download .md</button>
+        <span class="ex-count" id="exCount">&mdash;</span>
+      </div>
+      <div class="sheet" id="exBody"></div>
+    </div>
+  </div>
+</div>
+
+<div class="ovl" id="drlOvl">
+  <div class="ovl-card">
+    <div class="ovl-hd"><span>&#9672;</span><span>Quick-fire drill</span><button class="x" id="drlX">&times;</button></div>
+    <div class="ovl-bd"><div id="drlBody"></div></div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   MINI-SQL — a real SQL subset interpreter in plain JS.
+   No dependencies. Runs in node and in the browser.
+   Supports: WITH [RECURSIVE], SELECT [DISTINCT], FROM, INNER/LEFT/
+   RIGHT/FULL/CROSS/self joins, WHERE, GROUP BY, HAVING, ORDER BY,
+   LIMIT/OFFSET, UNION [ALL], EXCEPT, INTERSECT, CASE, scalar/IN/
+   EXISTS/correlated subqueries, aggregate functions, and the full
+   window-function family with PARTITION BY / ORDER BY / frames.
+   ============================================================ */
+(function (root) {
+'use strict';
+
+/* ---------- tokenizer ---------- */
+function tokenize(sql) {
+  var t = [], i = 0, n = sql.length, j, w, s, q, two;
+  while (i < n) {
+    var c = sql[i];
+    if (/\s/.test(c)) { i++; continue; }
+    if (c === '-' && sql[i + 1] === '-') { while (i < n && sql[i] !== '\n') i++; continue; }
+    if (c === '#') { while (i < n && sql[i] !== '\n') i++; continue; }
+    if (c === '/' && sql[i + 1] === '*') { i += 2; while (i < n && !(sql[i] === '*' && sql[i + 1] === '/')) i++; i += 2; continue; }
+    if (c === "'") {
+      s = ''; i++;
+      while (i < n) {
+        if (sql[i] === "'" && sql[i + 1] === "'") { s += "'"; i += 2; }
+        else if (sql[i] === "'") { i++; break; }
+        else s += sql[i++];
+      }
+      t.push({ t: 'str', v: s }); continue;
+    }
+    if (/[0-9]/.test(c) || (c === '.' && /[0-9]/.test(sql[i + 1] || ''))) {
+      j = i; while (j < n && /[0-9.]/.test(sql[j])) j++;
+      t.push({ t: 'num', v: parseFloat(sql.slice(i, j)) }); i = j; continue;
+    }
+    if (/[A-Za-z_]/.test(c)) {
+      j = i; while (j < n && /[A-Za-z0-9_$]/.test(sql[j])) j++;
+      w = sql.slice(i, j);
+      t.push({ t: 'id', v: w, u: w.toUpperCase() }); i = j; continue;
+    }
+    if (c === '`' || c === '"') {
+      q = c; j = i + 1; s = '';
+      while (j < n && sql[j] !== q) s += sql[j++];
+      t.push({ t: 'id', v: s, u: s.toUpperCase(), quoted: true }); i = j + 1; continue;
+    }
+    two = sql.substr(i, 2);
+    if (['<=', '>=', '<>', '!=', '||'].indexOf(two) >= 0) { t.push({ t: 'op', v: two }); i += 2; continue; }
+    t.push({ t: 'op', v: c }); i++;
+  }
+  t.push({ t: 'eof', v: '' });
+  return t;
+}
+
+var AGGS = ['COUNT', 'SUM', 'AVG', 'MIN', 'MAX', 'GROUP_CONCAT', 'STDDEV'];
+var WINONLY = ['ROW_NUMBER', 'RANK', 'DENSE_RANK', 'NTILE', 'LAG', 'LEAD',
+               'FIRST_VALUE', 'LAST_VALUE', 'NTH_VALUE', 'PERCENT_RANK', 'CUME_DIST'];
+var RESERVED = ['SETS','ROLLUP','CUBE','FROM','WHERE','GROUP','HAVING','ORDER','LIMIT','OFFSET','UNION','EXCEPT',
+  'INTERSECT','JOIN','LEFT','RIGHT','INNER','OUTER','FULL','CROSS','ON','USING','AS','AND',
+  'OR','NOT','IN','IS','NULL','LIKE','BETWEEN','EXISTS','CASE','WHEN','THEN','ELSE','END',
+  'SELECT','DISTINCT','WITH','RECURSIVE','BY','ASC','DESC','OVER','PARTITION','ROWS','RANGE',
+  'PRECEDING','FOLLOWING','UNBOUNDED','CURRENT','ROW','INTERVAL','WINDOW','SET','VALUES','DELETE','UPDATE','INSERT','MERGE'];
+
+/* ---------- parser ---------- */
+function Parser(sql) {
+  this.toks = tokenize(sql);
+  this.p = 0;
+  this.src = sql;
+}
+Parser.prototype.peek = function (k) { return this.toks[this.p + (k || 0)]; };
+Parser.prototype.next = function () { return this.toks[this.p++]; };
+Parser.prototype.isKw = function (u, k) { var t = this.peek(k); return t.t === 'id' && !t.quoted && t.u === u; };
+Parser.prototype.isOp = function (v, k) { var t = this.peek(k); return t.t === 'op' && t.v === v; };
+Parser.prototype.eatKw = function (u) { if (this.isKw(u)) { this.p++; return true; } return false; };
+Parser.prototype.eatOp = function (v) { if (this.isOp(v)) { this.p++; return true; } return false; };
+Parser.prototype.err = function (msg) {
+  var t = this.peek();
+  throw new Error('SQL parse error near "' + (t.v === '' ? '<end>' : t.v) + '": ' + msg);
+};
+Parser.prototype.wantKw = function (u) { if (!this.eatKw(u)) this.err('expected ' + u); };
+Parser.prototype.wantOp = function (v) { if (!this.eatOp(v)) this.err('expected "' + v + '"'); };
+Parser.prototype.ident = function () {
+  var t = this.peek();
+  if (t.t !== 'id') this.err('expected an identifier');
+  this.p++; return t.v;
+};
+
+Parser.prototype.parseStatement = function () {
+  var ctes = [], recursive = false;
+  if (this.eatKw('WITH')) {
+    if (this.eatKw('RECURSIVE')) recursive = true;
+    do {
+      var name = this.ident();
+      var cols = null;
+      if (this.isOp('(') && !this.isKw('SELECT', 1)) {
+        this.wantOp('('); cols = [];
+        do { cols.push(this.ident()); } while (this.eatOp(','));
+        this.wantOp(')');
+      }
+      this.wantKw('AS');
+      this.wantOp('(');
+      var body = this.parseSetSelect();
+      this.wantOp(')');
+      ctes.push({ name: name, cols: cols, body: body });
+    } while (this.eatOp(','));
+  }
+  var sel = this.parseSetSelect();
+  sel.ctes = ctes; sel.recursive = recursive;
+  if (this.peek().t !== 'eof' && !this.isOp(';')) this.err('unexpected trailing input');
+  return sel;
+};
+
+Parser.prototype.parseSetSelect = function () {
+  var left = this.parseSelect();
+  while (this.isKw('UNION') || this.isKw('EXCEPT') || this.isKw('INTERSECT')) {
+    var op = this.next().u;
+    var all = this.eatKw('ALL');
+    if (op !== 'UNION') this.eatKw('DISTINCT');
+    var right = this.parseSelect(true);
+    left = { type: 'setop', op: op, all: all, left: left, right: right };
+  }
+  // trailing ORDER BY / LIMIT applies to the whole set operation
+  if (left.type === 'setop') {
+    if (this.isKw('ORDER')) { this.next(); this.wantKw('BY'); left.orderBy = this.parseOrderList(); }
+    if (this.eatKw('LIMIT')) left.limit = this.parseLimit();
+  }
+  return left;
+};
+
+Parser.prototype.parseLimit = function () {
+  var a = this.parseExpr();
+  if (this.eatKw('OFFSET')) { var b = this.parseExpr(); return { count: a, offset: b }; }
+  if (this.eatOp(',')) { var c = this.parseExpr(); return { count: c, offset: a }; }
+  return { count: a, offset: null };
+};
+
+Parser.prototype.parseOrderList = function () {
+  var list = [];
+  do {
+    var e = this.parseExpr(), dir = 'ASC';
+    if (this.eatKw('DESC')) dir = 'DESC'; else this.eatKw('ASC');
+    list.push({ expr: e, dir: dir });
+  } while (this.eatOp(','));
+  return list;
+};
+
+Parser.prototype.parseSelect = function (noTail) {
+  if (this.eatOp('(')) {
+    var inner = this.parseSetSelect();
+    this.wantOp(')');
+    return inner;
+  }
+  this.wantKw('SELECT');
+  var distinct = false;
+  if (this.eatKw('DISTINCT')) distinct = true; else this.eatKw('ALL');
+  var items = [];
+  do {
+    if (this.isOp('*')) { this.next(); items.push({ expr: { k: 'star', tbl: null } }); continue; }
+    if (this.peek().t === 'id' && this.isOp('.', 1) && this.isOp('*', 2)) {
+      var tb = this.next().v; this.next(); this.next();
+      items.push({ expr: { k: 'star', tbl: tb } }); continue;
+    }
+    var e = this.parseExpr(), alias = null;
+    if (this.eatKw('AS')) alias = this.ident();
+    else if (this.peek().t === 'id' && RESERVED.indexOf(this.peek().u) < 0) alias = this.ident();
+    items.push({ expr: e, alias: alias });
+  } while (this.eatOp(','));
+
+  var sel = { type: 'select', distinct: distinct, items: items, from: null, where: null,
+              groupBy: null, having: null, orderBy: null, limit: null };
+  if (this.eatKw('FROM')) sel.from = this.parseFrom();
+  if (this.eatKw('WHERE')) sel.where = this.parseExpr();
+  if (this.isKw('GROUP')) {
+    this.next(); this.wantKw('BY');
+    sel.groupBy = []; sel.groupSpec = null;
+    if (this.isKw('ROLLUP') || this.isKw('CUBE')) {
+      var kind = this.next().u;
+      this.wantOp('('); var cols = [];
+      do { cols.push(this.parseExpr()); } while (this.eatOp(','));
+      this.wantOp(')');
+      sel.groupBy = cols.slice(); sel.groupSpec = { kind: kind, cols: cols };
+    } else if (this.isKw('GROUPING') && this.isKw('SETS', 1)) {
+      this.next(); this.next();
+      this.wantOp('('); var sets = [];
+      do {
+        this.wantOp('(');
+        var one = [];
+        if (!this.isOp(')')) { do { one.push(this.parseExpr()); } while (this.eatOp(',')); }
+        this.wantOp(')');
+        sets.push(one);
+      } while (this.eatOp(','));
+      this.wantOp(')');
+      var all = []; sets.forEach(function (st) { st.forEach(function (c) { all.push(c); }); });
+      sel.groupBy = all; sel.groupSpec = { kind: 'SETS', sets: sets };
+    } else {
+      do { sel.groupBy.push(this.parseExpr()); } while (this.eatOp(','));
+      if (this.isKw('WITH') && this.isKw('ROLLUP', 1)) {
+        this.next(); this.next();
+        sel.groupSpec = { kind: 'ROLLUP', cols: sel.groupBy.slice() };
+      }
+    }
+  }
+  if (this.eatKw('HAVING')) sel.having = this.parseExpr();
+  if (!noTail) {
+    if (this.isKw('ORDER')) { this.next(); this.wantKw('BY'); sel.orderBy = this.parseOrderList(); }
+    if (this.eatKw('LIMIT')) sel.limit = this.parseLimit();
+  }
+  return sel;
+};
+
+Parser.prototype.parseFrom = function () {
+  var left = this.parseTableRef();
+  for (;;) {
+    var kind = null;
+    if (this.isKw('CROSS') && this.isKw('JOIN', 1)) { this.next(); this.next(); kind = 'CROSS'; }
+    else if (this.isKw('INNER') && this.isKw('JOIN', 1)) { this.next(); this.next(); kind = 'INNER'; }
+    else if (this.isKw('LEFT')) { this.next(); this.eatKw('OUTER'); this.wantKw('JOIN'); kind = 'LEFT'; }
+    else if (this.isKw('RIGHT')) { this.next(); this.eatKw('OUTER'); this.wantKw('JOIN'); kind = 'RIGHT'; }
+    else if (this.isKw('FULL')) { this.next(); this.eatKw('OUTER'); this.wantKw('JOIN'); kind = 'FULL'; }
+    else if (this.isKw('JOIN')) { this.next(); kind = 'INNER'; }
+    else if (this.isOp(',')) { this.next(); kind = 'CROSS'; }
+    else break;
+    var right = this.parseTableRef(), on = null, using = null;
+    if (this.eatKw('ON')) on = this.parseExpr();
+    else if (this.eatKw('USING')) { this.wantOp('('); using = []; do { using.push(this.ident()); } while (this.eatOp(',')); this.wantOp(')'); }
+    left = { type: 'join', kind: kind, left: left, right: right, on: on, using: using };
+  }
+  return left;
+};
+
+Parser.prototype.parseTableRef = function () {
+  var node;
+  if (this.isOp('(')) {
+    this.next();
+    if (this.isKw('SELECT') || this.isKw('WITH') || this.isOp('(')) {
+      var s = this.parseSetSelect();
+      this.wantOp(')');
+      node = { type: 'sub', select: s, alias: null };
+    } else {
+      node = this.parseFrom();
+      this.wantOp(')');
+      return node;
+    }
+  } else {
+    var name = this.ident();
+    node = { type: 'table', name: name, alias: null };
+  }
+  if (this.eatKw('AS')) node.alias = this.ident();
+  else if (this.peek().t === 'id' && RESERVED.indexOf(this.peek().u) < 0) node.alias = this.ident();
+  if (!node.alias) node.alias = node.type === 'table' ? node.name : null;
+  if (!node.alias) this.err('subquery in FROM needs an alias');
+  return node;
+};
+
+/* ---------- expressions (precedence climbing) ---------- */
+Parser.prototype.parseExpr = function () { return this.parseOr(); };
+Parser.prototype.parseOr = function () {
+  var l = this.parseAnd();
+  while (this.isKw('OR')) { this.next(); l = { k: 'bin', op: 'OR', l: l, r: this.parseAnd() }; }
+  return l;
+};
+Parser.prototype.parseAnd = function () {
+  var l = this.parseNot();
+  while (this.isKw('AND')) { this.next(); l = { k: 'bin', op: 'AND', l: l, r: this.parseNot() }; }
+  return l;
+};
+Parser.prototype.parseNot = function () {
+  if (this.isKw('NOT')) { this.next(); return { k: 'un', op: 'NOT', e: this.parseNot() }; }
+  return this.parseCmp();
+};
+Parser.prototype.parseCmp = function () {
+  if (this.isKw('EXISTS')) { this.next(); this.wantOp('('); var s = this.parseSetSelect(); this.wantOp(')'); return { k: 'exists', select: s, neg: false }; }
+  var l = this.parseAdd();
+  for (;;) {
+    if (this.isOp('=') || this.isOp('<') || this.isOp('>') || this.isOp('<=') || this.isOp('>=') || this.isOp('<>') || this.isOp('!=')) {
+      var op = this.next().v; if (op === '!=') op = '<>';
+      l = { k: 'bin', op: op, l: l, r: this.parseAdd() }; continue;
+    }
+    if (this.isKw('IS')) {
+      this.next(); var neg = this.eatKw('NOT');
+      if (this.eatKw('NULL')) { l = { k: 'isnull', e: l, neg: neg }; continue; }
+      this.err('expected NULL after IS');
+    }
+    var negated = false, save = this.p;
+    if (this.isKw('NOT')) { this.next(); negated = true; }
+    if (this.isKw('IN')) {
+      this.next(); this.wantOp('(');
+      if (this.isKw('SELECT') || this.isKw('WITH')) { var sq = this.parseSetSelect(); this.wantOp(')'); l = { k: 'in', e: l, select: sq, neg: negated }; }
+      else { var list = []; do { list.push(this.parseExpr()); } while (this.eatOp(',')); this.wantOp(')'); l = { k: 'in', e: l, list: list, neg: negated }; }
+      continue;
+    }
+    if (this.isKw('LIKE')) { this.next(); l = { k: 'like', e: l, pat: this.parseAdd(), neg: negated }; continue; }
+    if (this.isKw('BETWEEN')) {
+      this.next(); var lo = this.parseAdd(); this.wantKw('AND'); var hi = this.parseAdd();
+      l = { k: 'between', e: l, lo: lo, hi: hi, neg: negated }; continue;
+    }
+    if (negated) { this.p = save; }
+    break;
+  }
+  return l;
+};
+Parser.prototype.parseAdd = function () {
+  var l = this.parseMul();
+  for (;;) {
+    if (this.isOp('+') || this.isOp('-') || this.isOp('||')) {
+      var op = this.next().v;
+      l = { k: 'bin', op: op, l: l, r: this.parseMul() };
+    } else break;
+  }
+  return l;
+};
+Parser.prototype.parseMul = function () {
+  var l = this.parseUnary();
+  for (;;) {
+    if (this.isOp('*') || this.isOp('/') || this.isOp('%')) {
+      var op = this.next().v;
+      l = { k: 'bin', op: op, l: l, r: this.parseUnary() };
+    } else break;
+  }
+  return l;
+};
+Parser.prototype.parseUnary = function () {
+  if (this.isOp('-')) { this.next(); return { k: 'un', op: '-', e: this.parseUnary() }; }
+  if (this.isOp('+')) { this.next(); return this.parseUnary(); }
+  return this.parsePrimary();
+};
+
+Parser.prototype.parseWindowSpec = function () {
+  this.wantOp('(');
+  var spec = { part: null, order: null, frame: null };
+  if (this.isKw('PARTITION')) { this.next(); this.wantKw('BY'); spec.part = []; do { spec.part.push(this.parseExpr()); } while (this.eatOp(',')); }
+  if (this.isKw('ORDER')) { this.next(); this.wantKw('BY'); spec.order = this.parseOrderList(); }
+  if (this.isKw('ROWS') || this.isKw('RANGE')) {
+    var mode = this.next().u, a, b;
+    if (this.eatKw('BETWEEN')) { a = this.parseFrameBound(); this.wantKw('AND'); b = this.parseFrameBound(); }
+    else { a = this.parseFrameBound(); b = { type: 'CURRENT' }; }
+    spec.frame = { mode: mode, from: a, to: b };
+  }
+  this.wantOp(')');
+  return spec;
+};
+Parser.prototype.parseFrameBound = function () {
+  if (this.eatKw('UNBOUNDED')) {
+    if (this.eatKw('PRECEDING')) return { type: 'UNB_PRE' };
+    this.wantKw('FOLLOWING'); return { type: 'UNB_FOL' };
+  }
+  if (this.isKw('CURRENT')) { this.next(); this.wantKw('ROW'); return { type: 'CURRENT' }; }
+  var e = this.parseAdd();
+  if (this.eatKw('PRECEDING')) return { type: 'PRE', n: e };
+  this.wantKw('FOLLOWING'); return { type: 'FOL', n: e };
+};
+
+Parser.prototype.parsePrimary = function () {
+  var t = this.peek();
+  if (t.t === 'num') { this.next(); return { k: 'num', v: t.v }; }
+  if (t.t === 'str') { this.next(); return { k: 'str', v: t.v }; }
+  if (t.t === 'op' && t.v === '(') {
+    this.next();
+    if (this.isKw('SELECT') || this.isKw('WITH')) { var s = this.parseSetSelect(); this.wantOp(')'); return { k: 'sub', select: s }; }
+    var e = this.parseExpr(); this.wantOp(')'); return e;
+  }
+  if (t.t === 'id') {
+    if (t.u === 'NULL') { this.next(); return { k: 'null' }; }
+    if (t.u === 'TRUE') { this.next(); return { k: 'num', v: 1 }; }
+    if (t.u === 'FALSE') { this.next(); return { k: 'num', v: 0 }; }
+    if (t.u === 'CASE') return this.parseCase();
+    if (t.u === 'INTERVAL') {
+      this.next(); var n = this.parseAdd(); var unit = this.ident().toUpperCase();
+      return { k: 'interval', n: n, unit: unit };
+    }
+    if (t.u === 'CAST') {
+      this.next(); this.wantOp('('); var ce = this.parseExpr(); this.wantKw('AS');
+      var ty = this.ident().toUpperCase();
+      if (this.eatOp('(')) { while (!this.isOp(')')) this.next(); this.wantOp(')'); }
+      this.wantOp(')');
+      return { k: 'fn', name: 'CAST', args: [ce, { k: 'str', v: ty }] };
+    }
+    // function call?
+    if (this.isOp('(', 1)) {
+      var name = this.next().v.toUpperCase();
+      this.next(); // (
+      var distinct = false, args = [];
+      if (this.isKw('DISTINCT')) { this.next(); distinct = true; }
+      if (this.isOp('*')) { this.next(); args.push({ k: 'star', tbl: null }); }
+      else if (!this.isOp(')')) { do { args.push(this.parseExpr()); } while (this.eatOp(',')); }
+      this.wantOp(')');
+      var node = { k: 'fn', name: name, args: args, distinct: distinct, over: null };
+      if (this.isKw('OVER')) { this.next(); node.over = this.parseWindowSpec(); }
+      return node;
+    }
+    // column reference
+    var first = this.next().v;
+    if (this.isOp('.')) {
+      this.next();
+      if (this.isOp('*')) { this.next(); return { k: 'star', tbl: first }; }
+      var col = this.ident();
+      return { k: 'col', tbl: first, name: col };
+    }
+    return { k: 'col', tbl: null, name: first };
+  }
+  this.err('unexpected token');
+};
+
+Parser.prototype.parseCase = function () {
+  this.wantKw('CASE');
+  var operand = null;
+  if (!this.isKw('WHEN')) operand = this.parseExpr();
+  var whens = [], els = null;
+  while (this.eatKw('WHEN')) {
+    var w = this.parseExpr(); this.wantKw('THEN');
+    var th = this.parseExpr();
+    whens.push({ w: w, t: th });
+  }
+  if (this.eatKw('ELSE')) els = this.parseExpr();
+  this.wantKw('END');
+  return { k: 'case', operand: operand, whens: whens, els: els };
+};
+
+function parse(sql) { return new Parser(sql).parseStatement(); }
+
+root.MiniSQLParse = parse;
+root.MiniSQLTokenize = tokenize;
+root.__MINISQL_AGGS = AGGS;
+root.__MINISQL_WINONLY = WINONLY;
+
+})(typeof window !== 'undefined' ? window : (typeof globalThis !== 'undefined' ? globalThis : this));
+
+/* ============================================================
+   MINI-SQL — evaluator
+   ============================================================ */
+(function (root) {
+'use strict';
+var parse = root.MiniSQLParse;
+var AGGS = root.__MINISQL_AGGS;
+var WINONLY = root.__MINISQL_WINONLY;
+
+function isNull(v) { return v === null || v === undefined; }
+function truthy(v) { return !isNull(v) && v !== 0 && v !== false && v !== ''; }
+
+function isDateStr(v) { return typeof v === 'string' && /^\d{4}-\d{2}-\d{2}/.test(v); }
+function hasTime(v) { return typeof v === 'string' && /^\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}/.test(v); }
+function toDate(v) { return new Date(String(v).slice(0, 10) + 'T00:00:00Z'); }
+/* full timestamp parse — 'YYYY-MM-DD' or 'YYYY-MM-DD HH:MM[:SS]' */
+function toTs(v) {
+  var t = String(v).replace(' ', 'T');
+  if (t.length === 10) t += 'T00:00:00';
+  if (t.length === 16) t += ':00';
+  return new Date(t + 'Z');
+}
+function fmtDate(d) { return d.toISOString().slice(0, 10); }
+function fmtTs(d) { return d.toISOString().slice(0, 19).replace('T', ' '); }
+/* The bench has no wall clock: a study site whose outputs change overnight is
+   a study site you cannot verify. CURRENT_DATE / NOW() return this constant. */
+var BENCH_NOW = '2026-02-15 09:30:00';
+function num(v) {
+  if (isNull(v)) return null;
+  if (typeof v === 'boolean') return v ? 1 : 0;
+  if (typeof v === 'number') return v;
+  var n = parseFloat(v); return isNaN(n) ? null : n;
+}
+
+/* ---------- JSON path ---------- */
+function jsonParse(v) {
+  if (isNull(v)) return null;
+  if (typeof v === 'object') return v;
+  try { return JSON.parse(String(v)); } catch (e) { return undefined; }
+}
+function jsonPath(doc, path) {
+  if (doc === null || doc === undefined) return undefined;
+  var p = String(path).trim();
+  if (p === '$') return doc;
+  if (p[0] === '$') p = p.slice(1);
+  var re = /\.([A-Za-z_][A-Za-z0-9_]*)|\[(\d+)\]|\.\"([^\"]+)\"/g, m, curr = doc;
+  while ((m = re.exec(p)) !== null) {
+    if (curr === null || curr === undefined) return undefined;
+    var key = m[1] !== undefined ? m[1] : (m[3] !== undefined ? m[3] : Number(m[2]));
+    curr = curr[key];
+  }
+  return curr;
+}
+function jsonOut(v) {
+  if (v === undefined) return null;
+  if (v === null) return null;
+  if (typeof v === 'object') return JSON.stringify(v);
+  return v;
+}
+
+function cmp(a, b) {
+  if (isNull(a) || isNull(b)) return null;
+  /* SQL has no separate boolean literal here: predicates that return true/false
+     must compare equal to 1/0, or `WHERE JSON_VALID(x) = 1` silently matches nothing. */
+  if (typeof a === 'boolean') a = a ? 1 : 0;
+  if (typeof b === 'boolean') b = b ? 1 : 0;
+  if (typeof a === 'number' && typeof b === 'number') return a < b ? -1 : (a > b ? 1 : 0);
+  if (typeof a === 'number' || typeof b === 'number') {
+    var x = num(a), y = num(b);
+    if (x !== null && y !== null) return x < y ? -1 : (x > y ? 1 : 0);
+  }
+  a = String(a); b = String(b);
+  return a < b ? -1 : (a > b ? 1 : 0);
+}
+function eq(a, b) { var c = cmp(a, b); return c === null ? null : c === 0; }
+
+/* ---------- row helpers ---------- */
+/* A row is a plain object keyed "alias.col" (lowercase).            */
+/* A rowset is { rows: [...], cols: [{key, name, tbl}] }             */
+function resolve(row, tbl, name) {
+  var k;
+  if (tbl) {
+    k = (tbl + '.' + name).toLowerCase();
+    if (k in row) return row[k];
+    return undefined;
+  }
+  var lname = '.' + name.toLowerCase(), keys = Object.keys(row), i;
+  for (i = 0; i < keys.length; i++) if (keys[i].slice(-lname.length) === lname) return row[keys[i]];
+  return undefined;
+}
+
+function relToRows(rel, alias) {
+  var cols = rel.cols.map(function (c) { return { key: (alias + '.' + c).toLowerCase(), name: c, tbl: alias }; });
+  var rows = rel.data.map(function (d) {
+    var o = {}, i;
+    for (i = 0; i < rel.cols.length; i++) o[cols[i].key] = d[rel.cols[i]];
+    return o;
+  });
+  return { rows: rows, cols: cols };
+}
+
+function nullRow(cols) { var o = {}, i; for (i = 0; i < cols.length; i++) o[cols[i].key] = null; return o; }
+function mergeRow(a, b) { var o = {}, k; for (k in a) o[k] = a[k]; for (k in b) o[k] = b[k]; return o; }
+
+/* ============================================================ */
+function Ctx(db, outer, ctes) {
+  this.db = db; this.outer = outer || null; this.ctes = ctes || {};
+}
+
+/* ---------- FROM ---------- */
+function evalFrom(node, ctx) {
+  if (!node) return { rows: [{}], cols: [] };
+  if (node.type === 'table') {
+    var key = node.name.toLowerCase();
+    var rel = ctx.ctes[key] || ctx.db[key];
+    if (!rel && ctx.db.__views && ctx.db.__views[key]) {
+      var vw = ctx.db.__views[key];
+      if (!vw.cache) {
+        if (vw.running) throw new Error('view "' + node.name + '" references itself');
+        vw.running = true;
+        try {
+          var vr = execSelect(parse(vw.sql), new Ctx(ctx.db, null, {}));
+          vw.cache = { cols: vr.cols, data: vr.data };
+        } finally { vw.running = false; }
+      }
+      rel = vw.cache;
+    }
+    if (!rel) throw new Error('unknown table "' + node.name + '"');
+    return relToRows(rel, (node.alias || node.name).toLowerCase());
+  }
+  if (node.type === 'sub') {
+    var res = execSelect(node.select, ctx);
+    return relToRows({ cols: res.cols, data: res.data }, node.alias.toLowerCase());
+  }
+  if (node.type === 'join') {
+    var L = evalFrom(node.left, ctx), R = evalFrom(node.right, ctx);
+    var cols = L.cols.concat(R.cols), out = [], i, j, matchedR = {}, any;
+    var on = node.on;
+    if (node.using) {
+      on = null;
+    }
+    function match(lr, rr) {
+      var m = mergeRow(lr, rr);
+      if (node.using) {
+        for (var u = 0; u < node.using.length; u++) {
+          var un = node.using[u];
+          var lv = resolve(lr, null, un), rv = resolve(rr, null, un);
+          if (eq(lv, rv) !== true) return false;
+        }
+        return true;
+      }
+      if (!on) return true;
+      return truthy(evalExpr(on, m, ctx, null));
+    }
+    if (node.kind === 'CROSS') {
+      for (i = 0; i < L.rows.length; i++) for (j = 0; j < R.rows.length; j++)
+        if (match(L.rows[i], R.rows[j])) out.push(mergeRow(L.rows[i], R.rows[j]));
+      return { rows: out, cols: cols };
+    }
+    for (i = 0; i < L.rows.length; i++) {
+      any = false;
+      for (j = 0; j < R.rows.length; j++) {
+        if (match(L.rows[i], R.rows[j])) { out.push(mergeRow(L.rows[i], R.rows[j])); any = true; matchedR[j] = true; }
+      }
+      if (!any && (node.kind === 'LEFT' || node.kind === 'FULL')) out.push(mergeRow(L.rows[i], nullRow(R.cols)));
+    }
+    if (node.kind === 'RIGHT' || node.kind === 'FULL') {
+      for (j = 0; j < R.rows.length; j++) if (!matchedR[j]) out.push(mergeRow(nullRow(L.cols), R.rows[j]));
+    }
+    return { rows: out, cols: cols };
+  }
+  throw new Error('bad FROM node');
+}
+
+/* ---------- expression evaluation ---------- */
+/* grp: array of rows when evaluating inside an aggregate context   */
+function evalExpr(e, row, ctx, grp) {
+  switch (e.k) {
+    case 'num': case 'str': case 'lit': return e.v;
+    case 'null': return null;
+    case 'interval': return { __interval: num(evalExpr(e.n, row, ctx, grp)), unit: e.unit };
+    case 'col': {
+      var v = resolve(row, e.tbl, e.name);
+      if (v !== undefined) return v;
+      if (row.__alias && (e.name.toLowerCase() in row.__alias)) return row.__alias[e.name.toLowerCase()];
+      var o = ctx.outer;
+      while (o) {
+        var ov = resolve(o.row, e.tbl, e.name);
+        if (ov !== undefined) return ov;
+        o = o.outer;
+      }
+      throw new Error('unknown column "' + (e.tbl ? e.tbl + '.' : '') + e.name + '"');
+    }
+    case 'un':
+      if (e.op === 'NOT') { var t = evalExpr(e.e, row, ctx, grp); return isNull(t) ? null : !truthy(t); }
+      var uv = num(evalExpr(e.e, row, ctx, grp)); return isNull(uv) ? null : -uv;
+    case 'bin': return evalBin(e, row, ctx, grp);
+    case 'isnull': { var iv = evalExpr(e.e, row, ctx, grp); return e.neg ? !isNull(iv) : isNull(iv); }
+    case 'between': {
+      var bv = evalExpr(e.e, row, ctx, grp);
+      var lo = evalExpr(e.lo, row, ctx, grp), hi = evalExpr(e.hi, row, ctx, grp);
+      if (isNull(bv) || isNull(lo) || isNull(hi)) return null;
+      var r = cmp(bv, lo) >= 0 && cmp(bv, hi) <= 0;
+      return e.neg ? !r : r;
+    }
+    case 'like': {
+      var lv = evalExpr(e.e, row, ctx, grp), pv = evalExpr(e.pat, row, ctx, grp);
+      if (isNull(lv) || isNull(pv)) return null;
+      var rx = new RegExp('^' + String(pv).replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/%/g, '[\\s\\S]*').replace(/_/g, '[\\s\\S]') + '$', 'i');
+      var m = rx.test(String(lv));
+      return e.neg ? !m : m;
+    }
+    case 'in': {
+      var iv2 = evalExpr(e.e, row, ctx, grp);
+      var vals;
+      if (e.select) {
+        var sub = execSelect(e.select, new Ctx(ctx.db, { row: row, outer: ctx.outer }, ctx.ctes));
+        vals = sub.data.map(function (d) { return d[sub.cols[0]]; });
+      } else {
+        vals = e.list.map(function (x) { return evalExpr(x, row, ctx, grp); });
+      }
+      if (isNull(iv2)) return null;
+      var sawNull = false, found = false, i;
+      for (i = 0; i < vals.length; i++) {
+        if (isNull(vals[i])) { sawNull = true; continue; }
+        if (eq(iv2, vals[i]) === true) { found = true; break; }
+      }
+      /* the NULL trap: NOT IN with any NULL in the list is never true */
+      if (found) return !e.neg;
+      if (sawNull) return null;
+      return !!e.neg;
+    }
+    case 'exists': {
+      var sub2 = execSelect(e.select, new Ctx(ctx.db, { row: row, outer: ctx.outer }, ctx.ctes));
+      var has = sub2.data.length > 0;
+      return e.neg ? !has : has;
+    }
+    case 'sub': {
+      var sub3 = execSelect(e.select, new Ctx(ctx.db, { row: row, outer: ctx.outer }, ctx.ctes));
+      if (!sub3.data.length) return null;
+      return sub3.data[0][sub3.cols[0]];
+    }
+    case 'case': {
+      var opv = e.operand ? evalExpr(e.operand, row, ctx, grp) : null, i2;
+      for (i2 = 0; i2 < e.whens.length; i2++) {
+        var w = evalExpr(e.whens[i2].w, row, ctx, grp);
+        var hit = e.operand ? (eq(opv, w) === true) : truthy(w);
+        if (hit) return evalExpr(e.whens[i2].t, row, ctx, grp);
+      }
+      return e.els ? evalExpr(e.els, row, ctx, grp) : null;
+    }
+    case 'fn': { var fv = evalFn(e, row, ctx, grp);
+      return typeof fv === 'boolean' ? (fv ? 1 : 0) : fv; }
+    case 'star': throw new Error('* is not valid here');
+  }
+  throw new Error('cannot evaluate expression');
+}
+
+function evalBin(e, row, ctx, grp) {
+  var op = e.op;
+  if (op === 'AND' || op === 'OR') {
+    var a = evalExpr(e.l, row, ctx, grp), b = evalExpr(e.r, row, ctx, grp);
+    var ta = isNull(a) ? null : truthy(a), tb = isNull(b) ? null : truthy(b);
+    if (op === 'AND') { if (ta === false || tb === false) return false; if (ta === null || tb === null) return null; return true; }
+    if (ta === true || tb === true) return true;
+    if (ta === null || tb === null) return null;
+    return false;
+  }
+  var l = evalExpr(e.l, row, ctx, grp), r = evalExpr(e.r, row, ctx, grp);
+  if (op === '=' || op === '<>' || op === '<' || op === '>' || op === '<=' || op === '>=') {
+    var c = cmp(l, r);
+    if (c === null) return null;
+    switch (op) {
+      case '=': return c === 0; case '<>': return c !== 0;
+      case '<': return c < 0; case '>': return c > 0;
+      case '<=': return c <= 0; case '>=': return c >= 0;
+    }
+  }
+  if (op === '||') { if (isNull(l) || isNull(r)) return null; return String(l) + String(r); }
+  /* date + / - INTERVAL */
+  if ((op === '+' || op === '-') && (isDateStr(l) || isDateStr(r))) {
+    var d = isDateStr(l) ? l : r, iv = (l && l.__interval !== undefined) ? l : ((r && r.__interval !== undefined) ? r : null);
+    if (iv) {
+      var dt = toDate(d), n = iv.__interval * (op === '-' ? -1 : 1);
+      if (iv.unit === 'DAY') dt.setUTCDate(dt.getUTCDate() + n);
+      else if (iv.unit === 'MONTH') dt.setUTCMonth(dt.getUTCMonth() + n);
+      else if (iv.unit === 'YEAR') dt.setUTCFullYear(dt.getUTCFullYear() + n);
+      else if (iv.unit === 'WEEK') dt.setUTCDate(dt.getUTCDate() + 7 * n);
+      else throw new Error('unsupported INTERVAL unit ' + iv.unit);
+      return fmtDate(dt);
+    }
+  }
+  var x = num(l), y = num(r);
+  if (isNull(x) || isNull(y)) return null;
+  switch (op) {
+    case '+': return x + y; case '-': return x - y; case '*': return x * y;
+    case '/': return y === 0 ? null : x / y;
+    case '%': return y === 0 ? null : x % y;
+  }
+  throw new Error('unsupported operator ' + op);
+}
+
+/* ---------- functions ---------- */
+function aggValues(e, grp, ctx) {
+  var arg = e.args[0], out = [], i;
+  if (!grp) grp = [];
+  if (arg && arg.k === 'star') { for (i = 0; i < grp.length; i++) out.push(1); return out; }
+  for (i = 0; i < grp.length; i++) out.push(evalExpr(arg, grp[i], ctx, null));
+  if (e.distinct) {
+    var seen = {}, ded = [];
+    for (i = 0; i < out.length; i++) {
+      var k = out[i] === null ? '\u0000null' : typeof out[i] + ':' + out[i];
+      if (!(k in seen)) { seen[k] = 1; ded.push(out[i]); }
+    }
+    out = ded;
+  }
+  return out;
+}
+
+function applyAgg(name, vals) {
+  var nn = vals.filter(function (v) { return !isNull(v); }), i, s = 0;
+  switch (name) {
+    case 'COUNT': return nn.length;
+    case 'SUM': if (!nn.length) return null; for (i = 0; i < nn.length; i++) s += num(nn[i]); return s;
+    case 'AVG': if (!nn.length) return null; for (i = 0; i < nn.length; i++) s += num(nn[i]); return s / nn.length;
+    case 'MIN': if (!nn.length) return null; return nn.reduce(function (a, b) { return cmp(a, b) <= 0 ? a : b; });
+    case 'MAX': if (!nn.length) return null; return nn.reduce(function (a, b) { return cmp(a, b) >= 0 ? a : b; });
+    case 'GROUP_CONCAT': return nn.length ? nn.join(',') : null;
+    case 'STDDEV': {
+      if (nn.length < 2) return 0;
+      var m = 0; for (i = 0; i < nn.length; i++) m += num(nn[i]); m /= nn.length;
+      var q = 0; for (i = 0; i < nn.length; i++) q += Math.pow(num(nn[i]) - m, 2);
+      return Math.sqrt(q / (nn.length - 1));
+    }
+  }
+  throw new Error('unknown aggregate ' + name);
+}
+
+function evalFn(e, row, ctx, grp) {
+  var name = e.name, a = e.args, i;
+  if (AGGS.indexOf(name) >= 0 && !e.over) {
+    if (grp === null || grp === undefined) throw new Error(name + '() used outside an aggregate context');
+    return applyAgg(name, aggValues(e, grp, ctx));
+  }
+  function A(k) { return evalExpr(a[k], row, ctx, grp); }
+  switch (name) {
+    case 'COALESCE': for (i = 0; i < a.length; i++) { var v = A(i); if (!isNull(v)) return v; } return null;
+    case 'IFNULL': { var v0 = A(0); return isNull(v0) ? A(1) : v0; }
+    case 'NULLIF': { var x = A(0), y = A(1); return eq(x, y) === true ? null : x; }
+    case 'IF': return truthy(A(0)) ? A(1) : A(2);
+    case 'ABS': { var n0 = num(A(0)); return isNull(n0) ? null : Math.abs(n0); }
+    case 'ROUND': { var n1 = num(A(0)); if (isNull(n1)) return null; var d = a.length > 1 ? num(A(1)) : 0; var f = Math.pow(10, d); return Math.round((n1 + Number.EPSILON) * f) / f; }
+    case 'FLOOR': { var n2 = num(A(0)); return isNull(n2) ? null : Math.floor(n2); }
+    case 'CEIL': case 'CEILING': { var n3 = num(A(0)); return isNull(n3) ? null : Math.ceil(n3); }
+    case 'GREATEST': { var g = A(0); for (i = 1; i < a.length; i++) { var gv = A(i); if (cmp(gv, g) > 0) g = gv; } return g; }
+    case 'LEAST': { var le = A(0); for (i = 1; i < a.length; i++) { var lv = A(i); if (cmp(lv, le) < 0) le = lv; } return le; }
+    case 'UPPER': { var u = A(0); return isNull(u) ? null : String(u).toUpperCase(); }
+    case 'LOWER': { var lo = A(0); return isNull(lo) ? null : String(lo).toLowerCase(); }
+    case 'LENGTH': case 'CHAR_LENGTH': { var ln = A(0); return isNull(ln) ? null : String(ln).length; }
+    case 'CONCAT': { var s = ''; for (i = 0; i < a.length; i++) { var cv = A(i); if (isNull(cv)) return null; s += String(cv); } return s; }
+    case 'SUBSTRING': case 'SUBSTR': { var sv = A(0); if (isNull(sv)) return null; var st = num(A(1)); var len = a.length > 2 ? num(A(2)) : undefined; return len === undefined ? String(sv).slice(st - 1) : String(sv).substr(st - 1, len); }
+    case 'LEFT': { var lv2 = A(0); return isNull(lv2) ? null : String(lv2).slice(0, num(A(1))); }
+    case 'RIGHT': { var rv2 = A(0); return isNull(rv2) ? null : String(rv2).slice(-num(A(1))); }
+    case 'CAST': { var cv2 = A(0), ty = a[1].v; if (isNull(cv2)) return null;
+      if (/INT|DECIMAL|FLOAT|DOUBLE|NUMERIC|SIGNED|UNSIGNED/.test(ty)) return num(cv2);
+      return String(cv2); }
+    case 'YEAR': { var dv = A(0); return isNull(dv) ? null : parseInt(String(dv).slice(0, 4), 10); }
+    case 'MONTH': { var dv2 = A(0); return isNull(dv2) ? null : parseInt(String(dv2).slice(5, 7), 10); }
+    case 'DAY': case 'DAYOFMONTH': { var dv3 = A(0); return isNull(dv3) ? null : parseInt(String(dv3).slice(8, 10), 10); }
+    case 'DATE': { var dv4 = A(0); return isNull(dv4) ? null : String(dv4).slice(0, 10); }
+    case 'DATE_FORMAT': {
+      var d2 = A(0), f2 = A(1); if (isNull(d2)) return null;
+      var s2 = String(d2);
+      return String(f2).replace(/%Y/g, s2.slice(0, 4)).replace(/%m/g, s2.slice(5, 7)).replace(/%d/g, s2.slice(8, 10));
+    }
+    case 'DATEDIFF': { var d3 = A(0), d4 = A(1); if (isNull(d3) || isNull(d4)) return null; return Math.round((toDate(String(d3)) - toDate(String(d4))) / 86400000); }
+    case 'DATE_SUB': case 'DATE_ADD': {
+      var base = A(0), iv = A(1);
+      if (isNull(base) || !iv || iv.__interval === undefined) return null;
+      var dt = toDate(String(base)), k = iv.__interval * (name === 'DATE_SUB' ? -1 : 1);
+      if (iv.unit === 'DAY') dt.setUTCDate(dt.getUTCDate() + k);
+      else if (iv.unit === 'WEEK') dt.setUTCDate(dt.getUTCDate() + 7 * k);
+      else if (iv.unit === 'MONTH') dt.setUTCMonth(dt.getUTCMonth() + k);
+      else if (iv.unit === 'YEAR') dt.setUTCFullYear(dt.getUTCFullYear() + k);
+      else throw new Error('unsupported INTERVAL unit ' + iv.unit);
+      return fmtDate(dt);
+    }
+    /* ---- date & time ---- */
+    case 'NOW': case 'CURRENT_TIMESTAMP': return BENCH_NOW;
+    case 'CURRENT_DATE': case 'CURDATE': return BENCH_NOW.slice(0, 10);
+    case 'HOUR': { var h0 = A(0); return isNull(h0) ? null : toTs(h0).getUTCHours(); }
+    case 'MINUTE': { var mi = A(0); return isNull(mi) ? null : toTs(mi).getUTCMinutes(); }
+    case 'SECOND': { var se = A(0); return isNull(se) ? null : toTs(se).getUTCSeconds(); }
+    case 'QUARTER': { var qd = A(0); return isNull(qd) ? null : Math.floor((parseInt(String(qd).slice(5,7),10) - 1) / 3) + 1; }
+    case 'DAYOFWEEK': { var dw = A(0); return isNull(dw) ? null : toDate(dw).getUTCDay() + 1; }
+    case 'DAYNAME': { var dn = A(0); if (isNull(dn)) return null;
+      return ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][toDate(dn).getUTCDay()]; }
+    case 'MONTHNAME': { var mn = A(0); if (isNull(mn)) return null;
+      return ['January','February','March','April','May','June','July','August','September','October','November','December'][parseInt(String(mn).slice(5,7),10) - 1]; }
+    case 'LAST_DAY': { var ld = A(0); if (isNull(ld)) return null;
+      var d5 = toDate(ld); d5.setUTCMonth(d5.getUTCMonth() + 1); d5.setUTCDate(0); return fmtDate(d5); }
+    case 'TIMESTAMPDIFF': {
+      var unit = (a[0].k === 'col' ? a[0].name : String(A(0))).toUpperCase();
+      var t1 = A(1), t2 = A(2);
+      if (isNull(t1) || isNull(t2)) return null;
+      var ms = toTs(t2) - toTs(t1);
+      if (unit === 'SECOND') return Math.round(ms / 1000);
+      if (unit === 'MINUTE') return Math.round(ms / 60000);
+      if (unit === 'HOUR') return Math.round(ms / 3600000);
+      if (unit === 'DAY') return Math.round(ms / 86400000);
+      if (unit === 'WEEK') return Math.round(ms / 604800000);
+      if (unit === 'MONTH') return (toTs(t2).getUTCFullYear() - toTs(t1).getUTCFullYear()) * 12 + (toTs(t2).getUTCMonth() - toTs(t1).getUTCMonth());
+      if (unit === 'YEAR') return toTs(t2).getUTCFullYear() - toTs(t1).getUTCFullYear();
+      throw new Error('unsupported TIMESTAMPDIFF unit ' + unit);
+    }
+    case 'DATE_TRUNC': {
+      var tu = String(A(0)).toUpperCase(), td = A(1);
+      if (isNull(td)) return null;
+      var s6 = String(td);
+      if (tu === 'YEAR') return s6.slice(0, 4) + '-01-01';
+      if (tu === 'QUARTER') { var q2 = Math.floor((parseInt(s6.slice(5,7),10) - 1) / 3) * 3 + 1;
+        return s6.slice(0,4) + '-' + (q2 < 10 ? '0' : '') + q2 + '-01'; }
+      if (tu === 'MONTH') return s6.slice(0, 7) + '-01';
+      if (tu === 'DAY') return s6.slice(0, 10);
+      if (tu === 'HOUR') return s6.slice(0, 13) + ':00:00';
+      throw new Error('unsupported DATE_TRUNC unit ' + tu);
+    }
+    /* ---- strings ---- */
+    case 'TRIM': { var tr = A(0); return isNull(tr) ? null : String(tr).trim(); }
+    case 'LTRIM': { var lt = A(0); return isNull(lt) ? null : String(lt).replace(/^\s+/, ''); }
+    case 'RTRIM': { var rt = A(0); return isNull(rt) ? null : String(rt).replace(/\s+$/, ''); }
+    case 'REPLACE': { var rp = A(0); if (isNull(rp)) return null;
+      return String(rp).split(String(A(1))).join(String(A(2))); }
+    case 'REVERSE': { var rv3 = A(0); return isNull(rv3) ? null : String(rv3).split('').reverse().join(''); }
+    case 'LPAD': { var lp = A(0); if (isNull(lp)) return null; var ln2 = num(A(1)), pd = a.length > 2 ? String(A(2)) : ' ';
+      var st2 = String(lp); while (st2.length < ln2) st2 = pd + st2; return st2.slice(-ln2 || undefined); }
+    case 'RPAD': { var rp2 = A(0); if (isNull(rp2)) return null; var ln3 = num(A(1)), pd2 = a.length > 2 ? String(A(2)) : ' ';
+      var st3 = String(rp2); while (st3.length < ln3) st3 = st3 + pd2; return st3.slice(0, ln3); }
+    case 'INSTR': case 'POSITION': { var hs = A(0); if (isNull(hs)) return null; return String(hs).indexOf(String(A(1))) + 1; }
+    case 'SPLIT_PART': { var sp = A(0); if (isNull(sp)) return null;
+      var parts = String(sp).split(String(A(1))), k3 = num(A(2)); return parts[k3 - 1] === undefined ? null : parts[k3 - 1]; }
+    case 'INITCAP': { var ic = A(0); if (isNull(ic)) return null;
+      return String(ic).replace(/\w\S*/g, function (w2) { return w2.charAt(0).toUpperCase() + w2.slice(1).toLowerCase(); }); }
+    /* ---- regex ---- */
+    case 'REGEXP_LIKE': case 'RLIKE': { var rl = A(0); if (isNull(rl)) return null;
+      return new RegExp(String(A(1))).test(String(rl)); }
+    case 'REGEXP_REPLACE': { var rr = A(0); if (isNull(rr)) return null;
+      return String(rr).replace(new RegExp(String(A(1)), 'g'), String(A(2))); }
+    case 'REGEXP_SUBSTR': case 'REGEXP_EXTRACT': { var rs = A(0); if (isNull(rs)) return null;
+      var mm = String(rs).match(new RegExp(String(A(1))));
+      if (!mm) return null;
+      var gi = a.length > 2 ? num(A(2)) : 0;
+      return mm[gi] === undefined ? null : mm[gi]; }
+    case 'REGEXP_COUNT': { var rc = A(0); if (isNull(rc)) return null;
+      var mm2 = String(rc).match(new RegExp(String(A(1)), 'g')); return mm2 ? mm2.length : 0; }
+    /* ---- JSON ---- */
+    case 'JSON_EXTRACT': { var doc = jsonParse(A(0)); if (doc === undefined) return null;
+      return jsonOut(jsonPath(doc, A(1))); }
+    case 'JSON_VALUE': case 'JSON_UNQUOTE_EXTRACT': {
+      var doc2 = jsonParse(A(0)); if (doc2 === undefined) return null;
+      var v2 = jsonPath(doc2, A(1));
+      if (v2 === undefined || v2 === null) return null;
+      return typeof v2 === 'object' ? JSON.stringify(v2) : v2; }
+    case 'JSON_UNQUOTE': { var ju = A(0); if (isNull(ju)) return null;
+      var t4 = String(ju); return (t4[0] === '"' && t4[t4.length-1] === '"') ? t4.slice(1, -1) : t4; }
+    case 'JSON_LENGTH': { var doc3 = jsonParse(A(0)); if (doc3 === undefined || doc3 === null) return null;
+      var tgt = a.length > 1 ? jsonPath(doc3, A(1)) : doc3;
+      if (tgt === undefined || tgt === null) return null;
+      return Array.isArray(tgt) ? tgt.length : (typeof tgt === 'object' ? Object.keys(tgt).length : 1); }
+    case 'JSON_TYPE': { var doc4 = jsonParse(A(0)); if (doc4 === undefined || doc4 === null) return null;
+      var tv = a.length > 1 ? jsonPath(doc4, A(1)) : doc4;
+      if (tv === undefined || tv === null) return null;
+      if (Array.isArray(tv)) return 'ARRAY';
+      if (typeof tv === 'object') return 'OBJECT';
+      if (typeof tv === 'number') return Number.isInteger(tv) ? 'INTEGER' : 'DOUBLE';
+      if (typeof tv === 'boolean') return 'BOOLEAN';
+      return 'STRING'; }
+    case 'JSON_KEYS': { var doc5 = jsonParse(A(0)); if (doc5 === undefined || doc5 === null) return null;
+      var kv = a.length > 1 ? jsonPath(doc5, A(1)) : doc5;
+      if (!kv || typeof kv !== 'object' || Array.isArray(kv)) return null;
+      return JSON.stringify(Object.keys(kv)); }
+    case 'JSON_CONTAINS_PATH': { var doc6 = jsonParse(A(0)); if (doc6 === undefined || doc6 === null) return null;
+      return jsonPath(doc6, A(1)) !== undefined; }
+    case 'JSON_VALID': { var jv = A(0); if (isNull(jv)) return null; return jsonParse(jv) !== undefined; }
+    case 'GROUPING': {
+      /* answered by execSelect via the current grouping set */
+      if (!ctx.__gs) return 0;
+      return ctx.__gs.indexOf(exprKey(a[0])) >= 0 ? 1 : 0;
+    }
+    case 'POW': case 'POWER': return Math.pow(num(A(0)), num(A(1)));
+    case 'SQRT': return Math.sqrt(num(A(0)));
+    case 'MOD': return num(A(0)) % num(A(1));
+  }
+  throw new Error('unknown function ' + name + '()');
+}
+
+/* ---------- window functions ---------- */
+function exprKey(e) {
+  if (!e || typeof e !== 'object') return String(e);
+  switch (e.k) {
+    case 'col': return 'c:' + (e.tbl ? e.tbl.toLowerCase() + '.' : '') + e.name.toLowerCase();
+    case 'num': case 'str': return 'v:' + e.v;
+    case 'null': return 'null';
+    case 'fn': return 'f:' + e.name + '(' + (e.args || []).map(exprKey).join(',') + ')';
+    case 'bin': return '(' + exprKey(e.l) + e.op + exprKey(e.r) + ')';
+    case 'un': return e.op + exprKey(e.e);
+    default: return JSON.stringify(e).slice(0, 80);
+  }
+}
+
+function hasAggregate(e) {
+  if (!e || typeof e !== 'object') return false;
+  if (e.k === 'fn' && !e.over && AGGS.indexOf(e.name) >= 0) return true;
+  if (e.k === 'sub' || e.k === 'exists') return false;
+  var keys = ['l', 'r', 'e', 'operand', 'els', 'lo', 'hi', 'pat', 'n'], i;
+  for (i = 0; i < keys.length; i++) if (e[keys[i]] && hasAggregate(e[keys[i]])) return true;
+  if (e.args) for (i = 0; i < e.args.length; i++) if (hasAggregate(e.args[i])) return true;
+  if (e.list) for (i = 0; i < e.list.length; i++) if (hasAggregate(e.list[i])) return true;
+  if (e.whens) for (i = 0; i < e.whens.length; i++) if (hasAggregate(e.whens[i].w) || hasAggregate(e.whens[i].t)) return true;
+  return false;
+}
+function collectWindows(e, out) {
+  if (!e || typeof e !== 'object') return out;
+  if (e.k === 'fn' && e.over) { out.push(e); }
+  if (e.k === 'sub' || e.k === 'exists') return out;
+  var keys = ['l', 'r', 'e', 'operand', 'els', 'lo', 'hi', 'pat', 'n'], i;
+  for (i = 0; i < keys.length; i++) if (e[keys[i]]) collectWindows(e[keys[i]], out);
+  if (e.args) for (i = 0; i < e.args.length; i++) collectWindows(e.args[i], out);
+  if (e.list) for (i = 0; i < e.list.length; i++) collectWindows(e.list[i], out);
+  if (e.whens) for (i = 0; i < e.whens.length; i++) { collectWindows(e.whens[i].w, out); collectWindows(e.whens[i].t, out); }
+  return out;
+}
+
+function orderComparator(list, ctx) {
+  return function (ra, rb) {
+    for (var i = 0; i < list.length; i++) {
+      var va = evalExpr(list[i].expr, ra, ctx, null), vb = evalExpr(list[i].expr, rb, ctx, null);
+      var c;
+      if (isNull(va) && isNull(vb)) c = 0;
+      else if (isNull(va)) c = -1;          /* MySQL: NULLs sort first ascending */
+      else if (isNull(vb)) c = 1;
+      else c = cmp(va, vb);
+      if (c !== 0) return list[i].dir === 'DESC' ? -c : c;
+    }
+    return 0;
+  };
+}
+
+function computeWindows(wins, rows, ctx) {
+  /* attaches __w<i> values onto each row object */
+  wins.forEach(function (w, wi) {
+    var key = '__w' + wi;
+    w.__key = key;
+    var spec = w.over;
+    /* partition */
+    var parts = {}, order = [];
+    rows.forEach(function (r) {
+      var pk = spec.part ? spec.part.map(function (p) { var v = evalExpr(p, r, ctx, null); return isNull(v) ? '\u0000' : String(v); }).join('\u0001') : '';
+      if (!(pk in parts)) { parts[pk] = []; order.push(pk); }
+      parts[pk].push(r);
+    });
+    order.forEach(function (pk) {
+      var pr = parts[pk];
+      if (spec.order) pr = pr.slice().sort(orderComparator(spec.order, ctx));
+      var n = pr.length, i;
+      /* peer groups for RANK / DENSE_RANK */
+      var rank = new Array(n), dense = new Array(n);
+      if (spec.order) {
+        var oc = orderComparator(spec.order, ctx), r0 = 1, d0 = 1;
+        for (i = 0; i < n; i++) {
+          if (i > 0 && oc(pr[i - 1], pr[i]) !== 0) { r0 = i + 1; d0++; }
+          rank[i] = r0; dense[i] = d0;
+        }
+      } else { for (i = 0; i < n; i++) { rank[i] = 1; dense[i] = 1; } }
+
+      function frameRange(i) {
+        var f = spec.frame;
+        if (!f) {
+          /* default: with ORDER BY -> UNBOUNDED PRECEDING .. CURRENT ROW (peers incl.)
+             without ORDER BY -> whole partition */
+          if (!spec.order) return [0, n - 1];
+          var end = i;
+          var oc2 = orderComparator(spec.order, ctx);
+          while (end + 1 < n && oc2(pr[end + 1], pr[i]) === 0) end++;
+          return [0, end];
+        }
+        function bound(b, isStart) {
+          if (b.type === 'UNB_PRE') return 0;
+          if (b.type === 'UNB_FOL') return n - 1;
+          if (b.type === 'CURRENT') {
+            /* Under RANGE, CURRENT ROW means the whole peer group tied on the
+               sort key — not just this physical row. That is the entire
+               practical difference between ROWS and RANGE. */
+            if (f.mode === 'RANGE' && spec.order) {
+              var oc3 = orderComparator(spec.order, ctx), j2 = i;
+              if (isStart) { while (j2 > 0 && oc3(pr[j2 - 1], pr[i]) === 0) j2--; }
+              else { while (j2 + 1 < n && oc3(pr[j2 + 1], pr[i]) === 0) j2++; }
+              return j2;
+            }
+            return i;
+          }
+          var k = num(evalExpr(b.n, pr[i], ctx, null)) || 0;
+          return b.type === 'PRE' ? i - k : i + k;
+        }
+        var a = Math.max(0, bound(f.from, true)), b2 = Math.min(n - 1, bound(f.to, false));
+        return [a, b2];
+      }
+
+      for (i = 0; i < n; i++) {
+        var row = pr[i], val, fr, sub, j;
+        var nm = w.name;
+        if (nm === 'ROW_NUMBER') val = i + 1;
+        else if (nm === 'RANK') val = rank[i];
+        else if (nm === 'DENSE_RANK') val = dense[i];
+        else if (nm === 'PERCENT_RANK') val = n > 1 ? (rank[i] - 1) / (n - 1) : 0;
+        else if (nm === 'CUME_DIST') { var c2 = 0; for (j = 0; j < n; j++) if (rank[j] <= rank[i]) c2++; val = c2 / n; }
+        else if (nm === 'NTILE') {
+          var buckets = num(evalExpr(w.args[0], row, ctx, null)) || 1;
+          var base = Math.floor(n / buckets), rem = n % buckets, pos = i, b3 = 0, acc = 0;
+          for (b3 = 0; b3 < buckets; b3++) { acc += base + (b3 < rem ? 1 : 0); if (pos < acc) break; }
+          val = Math.min(b3 + 1, buckets);
+        }
+        else if (nm === 'LAG' || nm === 'LEAD') {
+          var off = w.args.length > 1 ? num(evalExpr(w.args[1], row, ctx, null)) : 1;
+          var def = w.args.length > 2 ? evalExpr(w.args[2], row, ctx, null) : null;
+          var t = nm === 'LAG' ? i - off : i + off;
+          val = (t >= 0 && t < n) ? evalExpr(w.args[0], pr[t], ctx, null) : def;
+        }
+        else if (nm === 'FIRST_VALUE') { fr = frameRange(i); val = evalExpr(w.args[0], pr[fr[0]], ctx, null); }
+        else if (nm === 'LAST_VALUE') { fr = frameRange(i); val = evalExpr(w.args[0], pr[fr[1]], ctx, null); }
+        else if (nm === 'NTH_VALUE') {
+          fr = frameRange(i); var k2 = num(evalExpr(w.args[1], row, ctx, null));
+          var idx = fr[0] + k2 - 1;
+          val = idx <= fr[1] ? evalExpr(w.args[0], pr[idx], ctx, null) : null;
+        }
+        else if (AGGS.indexOf(nm) >= 0) {
+          fr = frameRange(i); sub = pr.slice(fr[0], fr[1] + 1);
+          val = applyAgg(nm, aggValues(w, sub, ctx));
+        }
+        else throw new Error(nm + '() is not a window function');
+        row[key] = val;
+      }
+    });
+  });
+}
+
+/* ---------- SELECT execution ---------- */
+function colName(item, idx) {
+  if (item.alias) return item.alias;
+  var e = item.expr;
+  if (e.k === 'col') return e.name;
+  if (e.k === 'fn') {
+    if (!e.args || !e.args.length) return e.name + '()';
+    if (e.args[0].k === 'star') return e.name + '(*)';
+    if (e.args[0].k === 'col') return e.name + '(' + e.args[0].name + ')';
+    return e.name + '(...)';
+  }
+  return 'col' + (idx + 1);
+}
+
+function execSelect(node, ctx) {
+  if (node.ctes && node.ctes.length) {
+    var newCtes = {}, k;
+    for (k in ctx.ctes) newCtes[k] = ctx.ctes[k];
+    ctx = new Ctx(ctx.db, ctx.outer, newCtes);
+    node.ctes.forEach(function (c) {
+      ctx.ctes[c.name.toLowerCase()] = evalCte(c, ctx, node.recursive);
+    });
+  }
+  if (node.type === 'setop') return execSetOp(node, ctx);
+
+  /* 1. FROM */
+  var fr = evalFrom(node.from, ctx);
+  var rows = fr.rows;
+
+  /* 2. WHERE */
+  if (node.where) rows = rows.filter(function (r) { return truthy(evalExpr(node.where, r, ctx, null)); });
+
+  /* expand * */
+  var items = [];
+  node.items.forEach(function (it) {
+    if (it.expr.k === 'star') {
+      fr.cols.forEach(function (c) {
+        if (it.expr.tbl && c.tbl !== it.expr.tbl.toLowerCase()) return;
+        items.push({ expr: { k: 'col', tbl: c.tbl, name: c.name }, alias: c.name });
+      });
+    } else items.push(it);
+  });
+  if (!items.length) throw new Error('SELECT * found no columns');
+
+  /* GROUP BY 1 / GROUP BY <select alias> resolve against the SELECT list */
+  var groupBy = node.groupBy ? node.groupBy.map(function (g) {
+    if (g.k === 'num' && g.v >= 1 && g.v <= items.length) return items[g.v - 1].expr;
+    if (g.k === 'col' && !g.tbl) {
+      /* A real column always wins over a SELECT alias of the same name — otherwise
+         `SELECT CASE … END AS chain … GROUP BY chain` groups by the CASE, not the column. */
+      var isRealCol = fr.cols.some(function (c) { return c.name.toLowerCase() === g.name.toLowerCase(); });
+      if (!isRealCol) {
+        for (var gi = 0; gi < items.length; gi++) {
+          if (items[gi].alias && items[gi].alias.toLowerCase() === g.name.toLowerCase()) return items[gi].expr;
+        }
+      }
+    }
+    return g;
+  }) : null;
+  if (node.groupSpec && node.groupSpec.cols) node.groupSpec.cols = groupBy.slice();
+  var grouped = !!(groupBy && groupBy.length);
+  var aggInSelect = items.some(function (it) { return hasAggregate(it.expr); }) || (node.having && hasAggregate(node.having));
+  var cols = items.map(function (it, i) { return colName(it, i); });
+  var out = [];
+
+  if (grouped || aggInSelect) {
+    /* Expand ROLLUP / CUBE / GROUPING SETS into an explicit list of grouping sets.
+       A plain GROUP BY is the single set containing every grouping expression. */
+    var setsList;
+    if (node.groupSpec) {
+      var gc = node.groupSpec.cols || [];
+      if (node.groupSpec.kind === 'ROLLUP') {
+        setsList = [];
+        for (var si = gc.length; si >= 0; si--) setsList.push(gc.slice(0, si));
+      } else if (node.groupSpec.kind === 'CUBE') {
+        setsList = [];
+        var total = 1 << gc.length;
+        for (var mask = total - 1; mask >= 0; mask--) {
+          var one2 = [];
+          for (var bi = 0; bi < gc.length; bi++) if (mask & (1 << bi)) one2.push(gc[bi]);
+          setsList.push(one2);
+        }
+      } else { setsList = node.groupSpec.sets; }
+    } else {
+      setsList = [grouped ? groupBy : []];
+    }
+    var allKeys = (groupBy || []).map(exprKey);
+    var groups = [];
+    setsList.forEach(function (setExprs) {
+      var inSet = setExprs.map(exprKey);
+      var nulled = allKeys.filter(function (k) { return inSet.indexOf(k) < 0; });
+      var gmap = {};
+      if (!setExprs.length) {
+        if (!grouped && !node.groupSpec) { groups.push({ rows: rows, nulled: nulled }); return; }
+        groups.push({ rows: rows, nulled: nulled });
+        return;
+      }
+      rows.forEach(function (r) {
+        var gk = setExprs.map(function (g) { var v = evalExpr(g, r, ctx, null); return isNull(v) ? '\u0000' : (typeof v) + ':' + v; }).join('\u0001');
+        if (!(gk in gmap)) { gmap[gk] = { key: gk, rows: [], nulled: nulled }; groups.push(gmap[gk]); }
+        gmap[gk].rows.push(r);
+      });
+    });
+    groups.forEach(function (g) {
+      var base = g.rows.length ? g.rows[0] : {};
+      var o = {}, al = {};
+      ctx.__gs = g.nulled || [];
+      items.forEach(function (it, i) {
+        /* a grouping column excluded from this set reports NULL, per the standard */
+        var v = (ctx.__gs.indexOf(exprKey(it.expr)) >= 0) ? null : evalExpr(it.expr, base, ctx, g.rows);
+        o[cols[i]] = v; al[cols[i].toLowerCase()] = v;
+        if (it.alias) al[it.alias.toLowerCase()] = v;
+      });
+      if (node.having) {
+        var hrow = mergeRow(base, {}); hrow.__alias = al;
+        if (!truthy(evalExpr(node.having, hrow, ctx, g.rows))) { ctx.__gs = null; return; }
+      }
+      ctx.__gs = null;
+      out.push({ vals: o, base: base, grp: g.rows, alias: al });
+    });
+  } else {
+    /* 5. window functions are computed here — after WHERE, inside SELECT */
+    var wins = [];
+    items.forEach(function (it) { collectWindows(it.expr, wins); });
+    if (node.orderBy) node.orderBy.forEach(function (o) { collectWindows(o.expr, wins); });
+    if (wins.length) computeWindows(wins, rows, ctx);
+    rows.forEach(function (r) {
+      var o = {}, al = {};
+      items.forEach(function (it, i) {
+        var v = evalWithWindows(it.expr, r, ctx);
+        o[cols[i]] = v; al[cols[i].toLowerCase()] = v;
+        if (it.alias) al[it.alias.toLowerCase()] = v;
+      });
+      out.push({ vals: o, base: r, grp: null, alias: al });
+    });
+  }
+
+  /* 6. DISTINCT */
+  if (node.distinct) {
+    var seen = {}, ded = [];
+    out.forEach(function (o) {
+      var k2 = cols.map(function (c) { return isNull(o.vals[c]) ? '\u0000' : (typeof o.vals[c]) + ':' + o.vals[c]; }).join('\u0001');
+      if (!(k2 in seen)) { seen[k2] = 1; ded.push(o); }
+    });
+    out = ded;
+  }
+
+  /* 7. ORDER BY — can see SELECT aliases */
+  if (node.orderBy) {
+    var lst = node.orderBy;
+    out.sort(function (a, b) {
+      for (var i = 0; i < lst.length; i++) {
+        var ex = lst[i].expr, va, vb;
+        if (ex.k === 'col' && !ex.tbl && (ex.name.toLowerCase() in a.alias)) { va = a.alias[ex.name.toLowerCase()]; vb = b.alias[ex.name.toLowerCase()]; }
+        else if (ex.k === 'num' && ex.v >= 1 && ex.v <= cols.length) { va = a.vals[cols[ex.v - 1]]; vb = b.vals[cols[ex.v - 1]]; }
+        else { va = evalWithWindows(ex, a.base, ctx, a.grp); vb = evalWithWindows(ex, b.base, ctx, b.grp); }
+        var c;
+        if (isNull(va) && isNull(vb)) c = 0;
+        else if (isNull(va)) c = -1; else if (isNull(vb)) c = 1;
+        else c = cmp(va, vb);
+        if (c !== 0) return lst[i].dir === 'DESC' ? -c : c;
+      }
+      return 0;
+    });
+  }
+
+  /* 8. LIMIT / OFFSET */
+  if (node.limit) {
+    var off = node.limit.offset ? num(evalExpr(node.limit.offset, {}, ctx, null)) : 0;
+    var cnt = num(evalExpr(node.limit.count, {}, ctx, null));
+    out = out.slice(off, off + cnt);
+  }
+  return { cols: cols, data: out.map(function (o) { return o.vals; }) };
+}
+
+function evalWithWindows(e, row, ctx, grp) {
+  if (e.k === 'fn' && e.over) {
+    if (e.__key && (e.__key in row)) return row[e.__key];
+    return null;
+  }
+  if (e.k === 'bin') {
+    if (e.op === 'AND' || e.op === 'OR') return evalExpr(e, row, ctx, grp === undefined ? null : grp);
+    var sub = { k: 'bin', op: e.op, l: { k: 'lit', v: evalWithWindows(e.l, row, ctx, grp) }, r: { k: 'lit', v: evalWithWindows(e.r, row, ctx, grp) } };
+    return evalBin({ k: 'bin', op: e.op, l: wrap(evalWithWindows(e.l, row, ctx, grp)), r: wrap(evalWithWindows(e.r, row, ctx, grp)) }, row, ctx, grp === undefined ? null : grp);
+  }
+  if (e.k === 'interval' && containsWindow(e)) {
+    return { __interval: Number(evalWithWindows(e.n, row, ctx, grp)), unit: e.unit };
+  }
+  if (e.k === 'fn' && !e.over && e.args && e.args.some(function (a) { return containsWindow(a); })) {
+    var cloned = { k: 'fn', name: e.name, distinct: e.distinct, over: null,
+      args: e.args.map(function (a) { return wrap(evalWithWindows(a, row, ctx, grp)); }) };
+    return evalFn(cloned, row, ctx, grp === undefined ? null : grp);
+  }
+  if (e.k === 'case' && containsWindow(e)) {
+    var i;
+    for (i = 0; i < e.whens.length; i++) {
+      var w = evalWithWindows(e.whens[i].w, row, ctx, grp);
+      if (e.operand) { if (eq(evalWithWindows(e.operand, row, ctx, grp), w) === true) return evalWithWindows(e.whens[i].t, row, ctx, grp); }
+      else if (truthy(w)) return evalWithWindows(e.whens[i].t, row, ctx, grp);
+    }
+    return e.els ? evalWithWindows(e.els, row, ctx, grp) : null;
+  }
+  if (e.k === 'un' && containsWindow(e)) {
+    var uv = evalWithWindows(e.e, row, ctx, grp);
+    if (e.op === 'NOT') return isNull(uv) ? null : !truthy(uv);
+    return isNull(uv) ? null : -num(uv);
+  }
+  return evalExpr(e, row, ctx, grp === undefined ? null : grp);
+}
+function wrap(v) {
+  if (v === null || v === undefined) return { k: 'null' };
+  if (typeof v === 'number') return { k: 'num', v: v };
+  if (typeof v === 'boolean') return { k: 'num', v: v ? 1 : 0 };
+  if (typeof v === 'object') return { k: 'lit', v: v };
+  return { k: 'str', v: v };
+}
+function containsWindow(e) { return collectWindows(e, []).length > 0; }
+
+function execSetOp(node, ctx) {
+  var L = execSelect(node.left, ctx), R = execSelect(node.right, ctx);
+  var cols = L.cols, out;
+  function key(d, c) { return c.map(function (k) { return isNull(d[k]) ? '\u0000' : (typeof d[k]) + ':' + d[k]; }).join('\u0001'); }
+  function align(d, from) { var o = {}, i; for (i = 0; i < cols.length; i++) o[cols[i]] = d[from[i]]; return o; }
+  var rd = R.data.map(function (d) { return align(d, R.cols); });
+  if (node.op === 'UNION') {
+    out = L.data.concat(rd);
+    if (!node.all) {
+      var seen = {}, ded = [];
+      out.forEach(function (d) { var k = key(d, cols); if (!(k in seen)) { seen[k] = 1; ded.push(d); } });
+      out = ded;
+    }
+  } else if (node.op === 'EXCEPT') {
+    var rk = {}; rd.forEach(function (d) { rk[key(d, cols)] = 1; });
+    var seen2 = {};
+    out = L.data.filter(function (d) { var k = key(d, cols); if (rk[k] || seen2[k]) return false; seen2[k] = 1; return true; });
+  } else {
+    var rk2 = {}; rd.forEach(function (d) { rk2[key(d, cols)] = 1; });
+    var seen3 = {};
+    out = L.data.filter(function (d) { var k = key(d, cols); if (!rk2[k] || seen3[k]) return false; seen3[k] = 1; return true; });
+  }
+  if (node.orderBy) {
+    var lst = node.orderBy;
+    out.sort(function (a, b) {
+      for (var i = 0; i < lst.length; i++) {
+        var ex = lst[i].expr, va, vb;
+        if (ex.k === 'col') { va = a[ex.name]; vb = b[ex.name]; }
+        else if (ex.k === 'num') { va = a[cols[ex.v - 1]]; vb = b[cols[ex.v - 1]]; }
+        var c = (isNull(va) && isNull(vb)) ? 0 : (isNull(va) ? -1 : (isNull(vb) ? 1 : cmp(va, vb)));
+        if (c !== 0) return lst[i].dir === 'DESC' ? -c : c;
+      }
+      return 0;
+    });
+  }
+  if (node.limit) {
+    var cnt = num(evalExpr(node.limit.count, {}, ctx, null));
+    var off = node.limit.offset ? num(evalExpr(node.limit.offset, {}, ctx, null)) : 0;
+    out = out.slice(off, off + cnt);
+  }
+  return { cols: cols, data: out };
+}
+
+function evalCte(c, ctx, recursive) {
+  var body = c.body;
+  var isRec = recursive && body.type === 'setop' && body.op === 'UNION';
+  if (!isRec) {
+    var r = execSelect(body, ctx);
+    if (c.cols) { r = { cols: c.cols, data: r.data.map(function (d) { var o = {}, i; for (i = 0; i < c.cols.length; i++) o[c.cols[i]] = d[r.cols[i]]; return o; }) }; }
+    return { cols: r.cols, data: r.data };
+  }
+  /* recursive: anchor UNION [ALL] recursive-member */
+  var anchor = execSelect(body.left, ctx);
+  var cols = c.cols || anchor.cols;
+  function norm(res) { return res.data.map(function (d) { var o = {}, i; for (i = 0; i < cols.length; i++) o[cols[i]] = d[res.cols[i]]; return o; }); }
+  var acc = norm(anchor), working = acc.slice(), guard = 0;
+  while (working.length && guard++ < 200) {
+    var sub = new Ctx(ctx.db, ctx.outer, Object.assign({}, ctx.ctes));
+    sub.ctes[c.name.toLowerCase()] = { cols: cols, data: working };
+    var step = execSelect(body.right, sub);
+    var got = norm(step);
+    if (!got.length) break;
+    acc = acc.concat(got);
+    working = got;
+  }
+  if (guard >= 200) throw new Error('recursive CTE did not terminate (200 iterations) — check the join condition');
+  return { cols: cols, data: acc };
+}
+
+/* ---------- public API ---------- */
+function run(sql, db) {
+  var ast = parse(sql);
+  var res = execSelect(ast, new Ctx(db, null, {}));
+  return { cols: res.cols, rows: res.data.map(function (d) { return res.cols.map(function (c) { return d[c]; }); }) };
+}
+function defineView(db, name, sql) {
+  if (!db.__views) db.__views = {};
+  db.__views[name.toLowerCase()] = { sql: sql, cache: null, running: false };
+}
+root.MiniSQL = { run: run, parse: parse, defineView: defineView, now: BENCH_NOW };
+
+})(typeof window !== 'undefined' ? window : (typeof globalThis !== 'undefined' ? globalThis : this));
+
+</script>
+<script>
+/* Sample database — two schemas.
+   HR schema  : employees / departments / sales  (matches the Part 2 study guide)
+   Fraud schema: wallets / transfers / alerts / analysts (blockchain-flavoured)
+   Small on purpose: every result fits on screen and can be checked by hand. */
+(function (root) {
+'use strict';
+
+function rel(cols, rows) {
+  return { cols: cols, data: rows.map(function (r) { var o = {}, i; for (i = 0; i < cols.length; i++) o[cols[i]] = r[i]; return o; }) };
+}
+
+var DB = {
+  departments: rel(['dept_id', 'dept_name', 'location'], [
+    [10, 'Engineering', 'Mumbai'],
+    [20, 'Risk',        'London'],
+    [30, 'Sales',       'Mumbai'],
+    [40, 'Compliance',  'London']
+  ]),
+
+  employees: rel(['emp_id', 'name', 'dept_id', 'salary', 'manager_id', 'hire_date'], [
+    [1,  'Asha',    10, 145000, null, '2019-03-11'],
+    [2,  'Bhavin',  10,  98000,    1, '2020-07-01'],
+    [3,  'Chetan',  10,  98000,    1, '2021-01-18'],
+    [4,  'Divya',   20, 132000, null, '2018-05-06'],
+    [5,  'Eshan',   20,  87000,    4, '2021-09-13'],
+    [6,  'Farah',   20,  76000,    4, '2022-02-21'],
+    [7,  'Gaurav',  30, 110000, null, '2019-11-04'],
+    [8,  'Hema',    30,  64000,    7, '2022-06-15'],
+    [9,  'Imran',   30,  64000,    7, '2023-01-09'],
+    [10, 'Jaya',    10,  71000,    2, '2023-04-24'],
+    [11, 'Kabir', null,  59000,    1, '2023-08-07'],
+    [12, 'Leela',   40,  91000, null, '2020-10-19']
+  ]),
+
+  sales: rel(['sale_id', 'emp_id', 'amount', 'sale_date'], [
+    [101, 7, 12000, '2026-01-04'],
+    [102, 8,  4500, '2026-01-04'],
+    [103, 7,  8000, '2026-01-05'],
+    [104, 9,  6200, '2026-01-06'],
+    [105, 8,  4500, '2026-01-04'],
+    [106, 7, 15500, '2026-01-11'],
+    [107, 9,  7300, '2026-01-12'],
+    [108, 8,  2100, '2026-01-13'],
+    [109, 7,  9900, '2026-02-02'],
+    [110, 9, 11200, '2026-02-03'],
+    [111, 8,  5400, '2026-02-09'],
+    [112, 7, 13100, '2026-02-14'],
+    [113, 9,  3300, '2026-03-01'],
+    [114, 8,  8800, '2026-03-02'],
+    [115, 7, 16400, '2026-03-03'],
+    [116, 9,  4100, '2026-03-04'],
+    [117, 8,  9500, '2026-03-05']
+  ]),
+
+  wallets: rel(['wallet_id', 'address', 'chain', 'first_seen', 'risk_band'], [
+    ['w-1', '0x4a1f', 'ethereum', '2025-08-02', 'low'],
+    ['w-2', '0x9c30', 'ethereum', '2025-09-14', 'high'],
+    ['w-3', '0x77bd', 'ethereum', '2025-11-01', 'medium'],
+    ['w-4', '0xd012', 'polygon',  '2026-01-06', 'high'],
+    ['w-5', '0x2e88', 'ethereum', '2026-01-19', 'low'],
+    ['w-6', '0xbb41', 'polygon',  '2026-02-02', 'medium'],
+    ['w-7', '0x5f7a', 'bitcoin',  '2025-06-23', 'low'],
+    ['w-8', '0xa93e', 'ethereum', '2026-02-10', null]
+  ]),
+
+  transfers: rel(['txn_id', 'src_wallet', 'dst_wallet', 'amount_usd', 'ts', 'is_flagged'], [
+    ['t-01', 'w-1', 'w-3',   420.00, '2026-02-01', 0],
+    ['t-02', 'w-2', 'w-3',  9800.00, '2026-02-01', 1],
+    ['t-03', 'w-3', 'w-4',  9750.00, '2026-02-01', 1],
+    ['t-04', 'w-4', 'w-5',  9600.00, '2026-02-02', 1],
+    ['t-05', 'w-1', 'w-5',   180.00, '2026-02-02', 0],
+    ['t-06', 'w-5', 'w-6',   950.00, '2026-02-03', 0],
+    ['t-07', 'w-2', 'w-6',  8800.00, '2026-02-03', 1],
+    ['t-08', 'w-6', 'w-1',   310.00, '2026-02-04', 0],
+    ['t-09', 'w-3', 'w-2',  7400.00, '2026-02-05', 1],
+    ['t-10', 'w-7', 'w-1',    75.50, '2026-02-05', 0],
+    ['t-11', 'w-4', 'w-2',  9900.00, '2026-02-06', 1],
+    ['t-12', 'w-5', 'w-1',   640.00, '2026-02-08', 0],
+    ['t-13', 'w-1', 'w-7',   220.00, '2026-02-09', 0],
+    ['t-14', 'w-6', 'w-4',  4300.00, '2026-02-11', 0],
+    ['t-15', 'w-2', 'w-4',  9500.00, '2026-02-12', 1],
+    ['t-16', 'w-8', 'w-2',  1200.00, '2026-02-12', 0]
+  ]),
+
+  alerts: rel(['alert_id', 'wallet_id', 'rule_code', 'raised_on', 'severity', 'analyst_id'], [
+    ['a-1', 'w-2', 'STRUCTURING', '2026-02-01', 'high',   901],
+    ['a-2', 'w-3', 'STRUCTURING', '2026-02-02', 'high',   901],
+    ['a-3', 'w-4', 'PEEL_CHAIN',  '2026-02-03', 'medium', 902],
+    ['a-4', 'w-2', 'MIXER_HOP',   '2026-02-06', 'high',   null],
+    ['a-5', 'w-6', 'VELOCITY',    '2026-02-11', 'low',    902],
+    ['a-6', 'w-4', 'STRUCTURING', '2026-02-12', 'high',   901]
+  ]),
+
+  logins: rel(['login_id', 'emp_id', 'login_date'], [
+    [1, 7, '2026-01-04'], [2, 7, '2026-01-05'], [3, 7, '2026-01-06'],
+    [4, 7, '2026-01-09'], [5, 8, '2026-01-04'], [6, 8, '2026-01-05'],
+    [7, 8, '2026-01-07'], [8, 9, '2026-01-11'], [9, 9, '2026-01-12'],
+    [10, 9, '2026-01-13'], [11, 9, '2026-01-14']
+  ]),
+
+  /* An SCD Type 2 dimension, mid-life: one wallet has been re-banded. */
+  dim_wallet: rel(['sk', 'wallet_id', 'risk_band', 'valid_from', 'valid_to', 'is_current'], [
+    [1, 'w-1', 'low',    '2025-08-02', '9999-12-31', 1],
+    [2, 'w-2', 'medium', '2025-09-14', '2026-02-01', 0],
+    [3, 'w-2', 'high',   '2026-02-01', '9999-12-31', 1],
+    [4, 'w-3', 'medium', '2025-11-01', '9999-12-31', 1],
+    [5, 'w-4', 'low',    '2026-01-06', '2026-02-03', 0],
+    [6, 'w-4', 'high',   '2026-02-03', '9999-12-31', 1],
+    [7, 'w-5', 'low',    '2026-01-19', '9999-12-31', 1],
+    [8, 'w-6', 'medium', '2026-02-02', '9999-12-31', 1],
+    [9, 'w-7', 'low',    '2025-06-23', '9999-12-31', 1],
+    [10,'w-8', null,     '2026-02-10', '9999-12-31', 1]
+  ]),
+
+  /* Landing-zone staging table: contains a genuine duplicate and a late arrival. */
+  stg_transfers: rel(['txn_id', 'src_wallet', 'dst_wallet', 'amount_usd', 'ts', 'ingested_at'], [
+    ['t-17', 'w-1', 'w-2', 500.00, '2026-02-13', '2026-02-13'],
+    ['t-17', 'w-1', 'w-2', 500.00, '2026-02-13', '2026-02-14'],
+    ['t-18', 'w-3', 'w-5', 880.00, '2026-02-13', '2026-02-13'],
+    ['t-11', 'w-4', 'w-2', 9900.00, '2026-02-06', '2026-02-14'],
+    ['t-19', 'w-6', 'w-8', 145.00, '2026-02-14', '2026-02-14']
+  ]),
+
+  /* Raw landing events: a JSON payload column, timestamps with a time part,
+     one malformed document and one missing key — the shapes you actually meet. */
+  events: rel(['event_id', 'wallet_id', 'event_ts', 'source', 'payload'], [
+    ['e-01', 'w-2', '2026-02-01 08:14:22', 'chain-listener',
+      '{"kind":"transfer","amount":9800.0,"asset":"USDT","counterparty":{"id":"w-3","tag":"exchange"},"labels":["large","new-pair"],"fee":{"gas":21000,"usd":1.42}}'],
+    ['e-02', 'w-3', '2026-02-01 08:51:07', 'chain-listener',
+      '{"kind":"transfer","amount":9750.0,"asset":"USDT","counterparty":{"id":"w-4"},"labels":["large"],"fee":{"gas":21000,"usd":1.38}}'],
+    ['e-03', 'w-4', '2026-02-02 09:03:44', 'chain-listener',
+      '{"kind":"transfer","amount":9600.0,"asset":"USDT","counterparty":{"id":"w-5","tag":"unknown"},"labels":[],"fee":{"gas":34000,"usd":2.10}}'],
+    ['e-04', 'w-1', '2026-02-02 09:04:01', 'chain-listener',
+      '{"kind":"transfer","amount":180.0,"asset":"ETH","counterparty":{"id":"w-5"},"fee":{"gas":21000,"usd":1.40}}'],
+    ['e-05', 'w-2', '2026-02-03 22:47:59', 'chain-listener',
+      '{"kind":"transfer","amount":8800.0,"asset":"USDT","counterparty":{"id":"w-6","tag":"mixer"},"labels":["large","mixer-adjacent","structuring"].scrim{display:none;position:fixed;inset:0;background:rgba(4,7,13,.66);z-index:39;backdrop-filter:blur(2px)}
+.scrim.open{display:block}
+.rail{position:fixed;inset:0 auto 0 0;width:var(--sb);height:100dvh;
+  padding-bottom:env(safe-area-inset-bottom);overscroll-behavior:contain;
+  background:linear-gradient(180deg,#0A1120,#080D18);
+  border-right:1px solid var(--line);overflow-y:auto;z-index:40;
+  scrollbar-width:thin;scrollbar-color:var(--line) transparent;display:flex;flex-direction:column}
+.rail::-webkit-scrollbar{width:7px}
+.rail::-webkit-scrollbar-thumb{background:var(--line);border-radius:9px}
+.brand{padding:22px 20px 15px;border-bottom:1px solid var(--line-soft)}
+.brand b{display:block;font-family:'Space Grotesk';font-size:16.5px;font-weight:700;letter-spacing:-.02em}
+.brand b i{color:var(--signal);font-style:normal}
+.brand span{display:block;font-family:'IBM Plex Mono';font-size:9.5px;letter-spacing:.18em;color:var(--dim);margin-top:5px;text-transform:uppercase}
+.find{padding:13px 14px 4px;position:sticky;top:0;background:linear-gradient(180deg,#0A1120 72%,transparent);z-index:2}
+.find input{width:100%;background:#0A101C;border:1px solid var(--line);border-radius:8px;color:var(--text);
+  font-family:'IBM Plex Mono';font-size:12px;padding:8px 11px;outline:none;transition:border-color .16s,box-shadow .16s}
+.find input:focus{border-color:var(--signal);box-shadow:0 0 0 3px var(--signal-soft)}
+.find input::placeholder{color:var(--dim)}
+nav{flex:1}
+.grp{padding:14px 14px 2px}
+.grp.hide{display:none}
+.grp-t{font-family:'IBM Plex Mono';font-size:9.5px;letter-spacing:.2em;color:var(--dim);text-transform:uppercase;
+  padding:0 8px 8px;display:flex;align-items:center;gap:8px}
+.grp-t::after{content:'';flex:1;height:1px;background:var(--line-soft)}
+.grp-t u{text-decoration:none;color:var(--line);letter-spacing:.06em}
+.nv{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:8px 10px;border:0;border-radius:8px;
+  background:transparent;color:var(--muted);font-family:'IBM Plex Sans';font-size:13.4px;font-weight:400;
+  cursor:pointer;transition:background .16s,color .16s;position:relative;line-height:1.35}
+.nv:hover{background:rgba(255,255,255,.035);color:var(--text)}
+.nv em{font-family:'IBM Plex Mono';font-style:normal;font-size:10.5px;color:var(--dim);min-width:24px;letter-spacing:.04em;transition:color .16s}
+.nv.on{background:var(--signal-soft);color:#fff;font-weight:500}
+.nv.on em{color:var(--signal)}
+.nv.on::before{content:'';position:absolute;left:-14px;top:50%;transform:translateY(-50%);width:3px;height:19px;
+  background:var(--signal);border-radius:0 3px 3px 0;box-shadow:0 0 12px var(--signal)}
+.nv.done em{color:var(--signal)}
+.nv.hide{display:none}
+.nv.ok>em{color:var(--ok)}
+.nv.ok>em::after{content:'✓';margin-left:3px;font-style:normal}
+.rail-f{padding:16px 22px 26px;font-family:'IBM Plex Mono';font-size:10px;color:var(--dim);line-height:1.8;border-top:1px solid var(--line-soft)}
+.rail-f b{color:var(--signal);font-weight:500}
+
+/* top bar */
+.stage{grid-column:2;min-width:0}
+.top{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:14px;padding:13px 40px;
+  background:rgba(7,11,20,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.burger{display:none;background:transparent;border:1px solid var(--line);color:var(--text);border-radius:7px;padding:6px 9px;cursor:pointer;font-size:14px}
+.top-lab{font-family:'IBM Plex Mono';font-size:10px;letter-spacing:.16em;color:var(--dim);text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tape{flex:1;height:3px;background:var(--line-soft);border-radius:3px;overflow:hidden;min-width:60px}
+.tape i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--wire),var(--signal));border-radius:3px;
+  transition:width .45s var(--d);box-shadow:0 0 10px rgba(47,216,198,.55)}
+.top-n{font-family:'IBM Plex Mono';font-size:11px;color:var(--signal);white-space:nowrap}
+.top-acts{display:flex;gap:6px;margin-left:auto;align-items:center}
+.tbtn{background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:7px;padding:5px 10px;cursor:pointer;
+  font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;display:flex;align-items:center;gap:6px;min-height:32px;
+  transition:border-color .15s,color .15s}
+.tbtn:hover{border-color:var(--signal);color:var(--text)}
+.tbtn.on{border-color:var(--ok);color:var(--ok);background:rgba(86,227,159,.08)}
+.tbtn kbd{font:400 9px/1 'IBM Plex Mono',monospace;opacity:.5;border:1px solid var(--line);border-radius:3px;padding:2px 4px}
+
+/* module */
+.mod{display:none;padding:38px 40px 90px;max-width:1120px}
+.mod.on{display:block;animation:in .42s var(--d)}
+@keyframes in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.eyebrow{font-family:'IBM Plex Mono';font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--signal);
+  display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.eyebrow::after{content:'';flex:1;max-width:120px;height:1px;background:var(--signal-line)}
+.mod h1{font-size:clamp(28px,4.4vw,40px);margin-bottom:12px}
+.mod h1 small{display:block;font-size:13px;font-weight:400;color:var(--dim);font-family:'IBM Plex Mono';letter-spacing:.05em;margin-top:9px;line-height:1.6}
+.lede{font-size:17px;color:#B9C7DA;font-weight:300;max-width:76ch;margin-bottom:30px}
+.mod h2{font-size:19px;margin:34px 0 12px;padding-bottom:9px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:9px}
+.mod h2::before{content:'';width:6px;height:6px;background:var(--signal);border-radius:2px;transform:rotate(45deg);flex:none}
+.mod h3{font-size:15px;color:var(--signal);margin:22px 0 8px;font-weight:600}
+.mod p{max-width:78ch;margin-bottom:13px;color:#C4D0E0}
+.mod ul,.mod ol{max-width:78ch;margin:0 0 15px 20px;color:#C4D0E0}
+.mod li{margin-bottom:7px}
+.mod li::marker{color:var(--signal)}
+strong{color:#fff;font-weight:600}
+em.hl{font-style:normal;color:var(--flag)}
+code{font-family:'IBM Plex Mono';font-size:.87em;background:var(--panel-2);border:1px solid var(--line);padding:1.5px 6px;border-radius:5px;color:var(--signal)}
+
+/* bench panel */
+.bench{background:linear-gradient(180deg,var(--panel),#0C1322);border:1px solid var(--line);border-radius:var(--r);
+  margin:22px 0 26px;position:relative;overflow:hidden;box-shadow:0 18px 44px -26px rgba(0,0,0,.9)}
+.bench::before,.bench::after{content:'';position:absolute;width:11px;height:11px;border:1.5px solid var(--signal-line);pointer-events:none}
+.bench::before{top:46px;left:0;border-right:0;border-bottom:0}
+.bench::after{bottom:0;right:0;border-left:0;border-top:0}
+.bh{display:flex;align-items:center;gap:10px;padding:11px 16px;background:linear-gradient(90deg,rgba(47,216,198,.07),transparent);
+  border-bottom:1px solid var(--line);font-family:'IBM Plex Mono';font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--signal)}
+.bh h5{font-family:'IBM Plex Mono';font-size:10px;font-weight:500;letter-spacing:.15em}
+.bh .dot{width:6px;height:6px;border-radius:50%;background:var(--signal);box-shadow:0 0 9px var(--signal);animation:pulse 2.4s infinite;flex:none}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.32}}
+.bh .tag{margin-left:auto;color:var(--dim);letter-spacing:.1em;text-transform:none;font-size:9.5px}
+.bb{padding:16px}
+
+/* SQL editor */
+.sqlbox{width:100%;background:#080E19;border:1px solid var(--line);border-left:2px solid var(--wire);border-radius:7px;
+  color:#C8D6EA;font-family:'IBM Plex Mono';font-size:12.6px;line-height:1.66;padding:12px 14px;outline:none;resize:vertical;
+  min-height:70px;tab-size:2;transition:border-color .16s}
+.sqlbox:focus{border-color:var(--signal);border-left-color:var(--signal)}
+.btn{background:var(--panel-3);border:1px solid var(--line);color:var(--text);padding:8px 15px;border-radius:8px;cursor:pointer;
+  font-family:'IBM Plex Mono';font-size:11.5px;letter-spacing:.06em;transition:all .16s;white-space:nowrap}
+.btn:hover{border-color:var(--signal);color:var(--signal);background:var(--signal-soft)}
+.btn:focus-visible{outline:2px solid var(--flag);outline-offset:2px}
+.btn.pri{background:var(--signal-soft);border-color:var(--signal-line);color:var(--signal)}
+.btn.pri:hover{background:rgba(47,216,198,.2)}
+.btn.sm{padding:5px 10px;font-size:10.5px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:11px 0}
+.row.end{margin-bottom:0}
+.meta{font-family:'IBM Plex Mono';font-size:10.5px;color:var(--dim);letter-spacing:.08em;margin-left:auto}
+.meta b{color:var(--signal);font-weight:500}
+.meta.bad b{color:var(--alert)}
+
+/* result grid */
+.out{margin-top:4px}
+.rwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line-soft);border-radius:8px;background:#0A101C}
+table.res{width:100%;border-collapse:collapse;font-family:'IBM Plex Mono';font-size:12.2px;margin:0}
+table.res th{background:var(--panel-2);color:var(--signal);font-size:9.8px;letter-spacing:.12em;text-transform:uppercase;
+  text-align:left;padding:8px 11px;border-bottom:1px solid var(--line);font-weight:500;white-space:nowrap;position:sticky;top:0}
+table.res td{padding:7px 11px;border-bottom:1px solid var(--line-soft);color:#C4D0E0;white-space:nowrap}
+table.res tbody tr:last-child td{border-bottom:0}
+table.res tbody tr:nth-child(odd){background:rgba(124,156,245,.032)}
+table.res tbody tr:hover{background:var(--signal-soft)}
+table.res td.n{text-align:right;color:#DCE4F0}
+table.res td.null{color:var(--dim);font-style:italic}
+.err{border:1px solid rgba(255,122,122,.4);border-left:2px solid var(--alert);background:rgba(255,122,122,.07);
+  border-radius:7px;padding:11px 13px;font-family:'IBM Plex Mono';font-size:12px;color:#FFC2C2;white-space:pre-wrap}
+.zero{font-family:'IBM Plex Mono';font-size:12px;color:var(--flag);border:1px dashed var(--flag-line);
+  border-radius:7px;padding:11px 13px;background:var(--flag-soft)}
+
+/* narrative / code */
+.pre{font-family:'IBM Plex Mono';font-size:12.4px;background:#080E19;border:1px solid var(--line-soft);
+  border-left:2px solid var(--signal);border-radius:7px;padding:12px 14px;white-space:pre-wrap;word-break:break-word;
+  color:#B9C7DA;line-height:1.66;margin:12px 0;overflow-x:auto}
+.pre.code{border-left-color:var(--wire);color:#C8D6EA}
+.pre.note{border-left-color:var(--flag);white-space:normal;font-family:'IBM Plex Sans';font-size:13.6px;color:#B9C7DA}
+.pre b{color:var(--flag);font-weight:500}
+.pre i{font-style:normal;color:var(--ok)}
+.pre u{text-decoration:none;color:var(--alert)}
+
+/* tables in prose */
+.mod table:not(.res){width:100%;border-collapse:collapse;margin:14px 0;font-size:13.4px}
+.mod table:not(.res) th{background:var(--panel-2);color:var(--signal);font-family:'IBM Plex Mono';font-size:10px;
+  letter-spacing:.13em;text-transform:uppercase;text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);font-weight:500}
+.mod table:not(.res) td{padding:9px 12px;border-bottom:1px solid var(--line-soft);color:#C4D0E0;vertical-align:top}
+.mod table:not(.res) tbody tr:nth-child(odd){background:rgba(124,156,245,.032)}
+.mod table:not(.res) tbody tr:hover{background:var(--signal-soft)}
+
+/* callouts */
+.call{border:1px solid var(--flag-line);border-left:3px solid var(--flag);background:var(--flag-soft);border-radius:8px;
+  padding:14px 16px;margin:20px 0;max-width:82ch}
+.call h4{font-family:'IBM Plex Mono';font-size:10px;letter-spacing:.17em;text-transform:uppercase;color:var(--flag);margin-bottom:7px;font-weight:500}
+.call p{color:#DCE4F0;margin:0;font-size:14.4px;max-width:none}
+.call.warn{border-color:rgba(255,122,122,.34);border-left-color:var(--alert);background:rgba(255,122,122,.07)}
+.call.warn h4{color:var(--alert)}
+
+/* quick fire */
+.qf{border:1px solid var(--line);border-radius:var(--r);margin:26px 0 8px;background:var(--panel);overflow:hidden}
+.qf>summary{padding:13px 16px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;
+  font-family:'IBM Plex Mono';font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--flag)}
+.qf>summary::-webkit-details-marker{display:none}
+.qf>summary::before{content:'▸';color:var(--flag);transition:transform .2s;display:inline-block}
+.qf[open]>summary::before{transform:rotate(90deg)}
+.qf>summary:hover{background:var(--flag-soft)}
+.qfb{padding:4px 16px 16px;border-top:1px solid var(--line)}
+.qa{padding:11px 0;border-bottom:1px dashed var(--line-soft)}
+.qa:last-child{border:0}
+.qa q{display:block;color:#fff;font-weight:500;font-size:14px;quotes:none}
+.qa q::before{content:'Q. ';color:var(--flag);font-family:'IBM Plex Mono';font-size:11px}
+.qa p{margin:5px 0 0;color:var(--muted);font-size:13.6px;max-width:none}
+
+/* pager */
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:38px;padding-top:22px;border-top:1px solid var(--line)}
+.pg{flex:1;max-width:320px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:12px 15px;
+  cursor:pointer;text-align:left;transition:all .18s;color:var(--text);min-width:0}
+.pg:hover{border-color:var(--signal);background:var(--signal-soft);transform:translateY(-2px)}
+.pg span{display:block;font-family:'IBM Plex Mono';font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);margin-bottom:3px}
+.pg b{font-family:'Space Grotesk';font-size:14.5px;font-weight:500;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pg.nx{text-align:right}
+.pg[disabled]{opacity:.28;pointer-events:none}
+.kbd{font-family:'IBM Plex Mono';font-size:10px;color:var(--dim);letter-spacing:.1em;text-align:center;margin-top:18px}
+
+/* overlays */
+.ovl{position:fixed;inset:0;background:rgba(4,7,13,.74);backdrop-filter:blur(3px);z-index:60;display:none;
+  align-items:flex-start;justify-content:center;padding:6vh 16px 20px}
+.ovl.open{display:flex}
+.ovl-card{background:#0C1322;border:1px solid var(--line);border-radius:14px;width:min(860px,100%);max-height:88vh;
+  display:flex;flex-direction:column;box-shadow:0 24px 70px rgba(0,0,0,.6)}
+.ovl-hd{display:flex;align-items:center;gap:9px;padding:14px 16px;border-bottom:1px solid var(--line);
+  font:500 12.5px/1.3 'IBM Plex Mono',monospace;letter-spacing:.06em;color:var(--text);flex-shrink:0}
+.ovl-hd .x{margin-left:auto;background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:6px;
+  width:30px;height:30px;cursor:pointer;font-size:13px;line-height:1}
+.ovl-hd .x:hover{border-color:var(--alert);color:var(--alert)}
+.ovl-bd{padding:14px 16px 18px;overflow-y:auto;overscroll-behavior:contain}
+#srIn{width:100%;background:#080D18;border:1px solid var(--line);border-radius:9px;padding:11px 13px;color:var(--text);
+  font-family:inherit;font-size:14.5px;outline:none;margin-bottom:12px}
+#srIn:focus{border-color:var(--signal)}
+.sr{display:block;width:100%;text-align:left;background:transparent;border:1px solid transparent;border-radius:9px;
+  padding:9px 11px;margin-bottom:5px;cursor:pointer;color:inherit}
+.sr:hover,.sr.sel{background:rgba(47,216,198,.07);border-color:rgba(47,216,198,.30)}
+.sr em{display:block;font:400 9.5px/1.4 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:3px}
+.sr b{display:block;font-weight:500;font-size:14px;color:var(--text);line-height:1.4}
+.sr span{display:block;font-size:12.5px;color:var(--muted);line-height:1.55;margin-top:3px}
+.sr mark{background:rgba(242,179,61,.24);color:var(--flag);border-radius:2px;padding:0 1px}
+.hint{color:var(--dim);font-size:13px;line-height:1.6;padding:10px 2px}
+.drl-bar{height:3px;background:var(--line);border-radius:2px;overflow:hidden;margin:2px 0 12px}
+.drl-bar i{display:block;height:100%;background:var(--signal);width:0;transition:width .3s}
+.drl-q{font-size:17px;line-height:1.5;font-weight:500;color:var(--text);margin:14px 0 6px}
+.drl-src{font:400 9.5px/1.4 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:14px}
+.drl-a{background:rgba(47,216,198,.06);border-left:2px solid var(--signal);border-radius:0 8px 8px 0;padding:12px 14px;
+  font-size:14px;line-height:1.65;color:var(--muted);margin-bottom:14px}
+.orow{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-top:4px}
+.obtn{background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:7px;padding:8px 13px;cursor:pointer;
+  font:500 12px/1 'IBM Plex Sans',sans-serif;min-height:38px}
+.obtn:hover{border-color:var(--signal);color:var(--text)}
+.obtn.pri{border-color:var(--signal);color:var(--signal)}
+
+/* schema browser */
+.sch{margin-bottom:16px}
+.sch h4{font-family:'IBM Plex Mono';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--signal);margin-bottom:6px}
+.sch p{font-size:12.8px;color:var(--muted);margin-bottom:7px}
+.sch .cols{font-family:'IBM Plex Mono';font-size:11.5px;color:#B9C7DA;background:#080E19;border:1px solid var(--line-soft);
+  border-radius:6px;padding:8px 10px;line-height:1.8}
+.sch .cols b{color:var(--flag);font-weight:500}
+
+/* mobile */
+@media(max-width:760px){
+  .mod table:not(.res){display:block;overflow-x:auto;font-size:12.5px}
+  .mod h2{font-size:17px} .mod h3{font-size:14px}
+  .lede{font-size:15.5px} .mod p,.mod li{font-size:14.5px}
+  .pre{font-size:11.4px;padding:10px 11px}
+  .sqlbox{font-size:11.8px}
+  .bh{flex-wrap:wrap;row-gap:4px} .bh .tag{margin-left:0}
+  .call{padding:12px 13px} .qa q{font-size:13.5px} .qa p{font-size:13px}
+  .meta{margin-left:0;width:100%}
+}
+@media(max-width:940px){
+  .app{grid-template-columns:1fr}
+  .rail{width:min(88vw,300px);transform:translateX(-100%);transition:transform .26s var(--d);box-shadow:none;visibility:hidden}
+  .rail.open{transform:none;visibility:visible;box-shadow:0 0 44px rgba(0,0,0,.6)}
+  .burger{min-width:44px;min-height:40px;font-size:17px;line-height:1;display:block}
+  .stage{grid-column:1}
+  .top{padding:12px 18px}
+  .mod{padding:26px 18px 70px}
+  .top-acts .lbl{display:none}
+  .tbtn{padding:5px 8px} .tbtn kbd{display:none}
+  .ovl{padding:0}
+  .ovl-card{max-height:100dvh;height:100dvh;width:100%;border-radius:0;border:0}
+}
+@media(max-width:560px){
+  .pager{flex-direction:column} .pg{max-width:none} .pg.nx{text-align:left}
+  .mod{padding:22px 14px 60px}
+  .top{padding:11px 14px;gap:10px} .top-lab{display:none} .brand span{display:none}
+}
+@media(hover:none){.btn{padding:10px 15px}.nv{padding:11px 10px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
 </style>
 </head>
 <body>
